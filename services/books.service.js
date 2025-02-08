@@ -1,8 +1,8 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util-service.js'
-import gBooks from '../assets/json/books.json'
+import { booksData } from './data/books.js'
 
-export const booksService = {
+export const bookService = {
     query,
     getById,
     remove,
@@ -14,7 +14,16 @@ const KEY = 'booksDB'
 
 
 function query() {
+    
     return storageService.query(KEY)
+        .then(books => {
+            if (!books || !books.length) {
+                books = booksData
+                _saveBooksToStorage()
+            }
+            return books
+        })
+        .catch(error => console.log(error))
 }
 
 function getById(bookId) {
@@ -41,30 +50,7 @@ function _addBook(book) {
     return storageService.post(KEY, book)
 }
 
-function _createBook() {
-    return {
-        id: utilService.makeId(),
-        title: "metus hendrerit",
-        subtitle: utilService.makeLorem(15),
-        authors: ["Oren Yaniv"],
-        publishedDate: utilService.getRandomInt(1700, 2022),
-        description: utilService.makeLorem(50),
-        pageCount: utilService.getRandomInt(1, 700),
-        categories: [
-            "Computers",
-            "Hack"
-        ],
-        thumbnail: "http://coding-academy.org/books-photos/20.jpg",
-        language: "en",
-        listPrice: {
-            amount: utilService.getRandomInt(10, 30),
-            currencyCode: "EUR",
-            isOnSale: false
-        }
-    }
-}
-
 function _saveBooksToStorage() {
-    storageService.save(KEY, gBooks)
+    storageService.save(KEY, booksData)
 }
 
