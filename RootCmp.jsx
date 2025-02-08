@@ -1,5 +1,4 @@
-import { Logo } from './cmps/Header/Logo.jsx'
-import { Navigation } from './cmps/Header/Navigation.jsx'
+import { AppHeader } from "./cmps/Header/AppHeader.jsx"
 
 import { HomePage } from "./pages/HomePage.jsx"
 import { AboutUsPage } from "./pages/AboutUsPage.jsx"
@@ -18,10 +17,9 @@ export function App() {
     return (
         <section className="app">
 
-            <header className="app-header main-layout">
-                <Logo onSetPage={onSetPage} />
-                <Navigation onSetPage={onSetPage} />
-            </header>
+            <section className="header-container main-layout full">
+                <AppHeader onSetPage={onSetPage} />
+            </section>
 
             <main className="main-layout">
                 {page === 'home' && <HomePage />}

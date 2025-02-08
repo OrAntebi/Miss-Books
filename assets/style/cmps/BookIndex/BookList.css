@@ -1,0 +1,12 @@
+.book-list {
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .book-container {
+        flex-grow: 1;
+        
+        .book-actions {
+            gap: 10px;
+        }
+    }
+}

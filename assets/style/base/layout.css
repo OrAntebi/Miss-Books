@@ -1,5 +1,17 @@
+/* main layout */
+
 .main-layout {
-    margin: 0 auto;
-    padding-left: 1.6rem;
-    padding-right: 1.6rem;
+    display: grid;
+    grid-template-columns:
+        minmax(40px, 1fr)
+        minmax(auto, 1400px)
+        minmax(40px, 1fr);
+}
+
+.main-layout>*:not(.full) {
+    grid-column: 2;
+}
+
+.main-layout>*.full {
+    grid-column: 1 / -1;
 }
