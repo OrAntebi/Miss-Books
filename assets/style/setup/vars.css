@@ -1,5 +1,6 @@
 :root {
-    
-    /* BOOK PREVIEW */
-    --gap: 15px
+    --gap: 15px;
+
+    /* PALETTE  */
+    --primary-clr: #87CEFA;
 }

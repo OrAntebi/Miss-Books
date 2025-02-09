@@ -37,8 +37,12 @@ export function BookIndex() {
                 <BookFilter onSetFilter={onSetFilter} filterBy={filterBy} />
             </section>
 
-            <section className="book-list flex justify-between">
-                {books.length && <BookList books={books} onDeleteBook={onDeleteBook} />}
+            <section className="book-list flex justify-center">
+                {books.length > 0 ? (
+                    <BookList books={books} onDeleteBook={onDeleteBook} />
+                ) : (
+                    <h2 className="no-books-found">No books found..</h2>
+                )}
             </section>
         </section>
     )

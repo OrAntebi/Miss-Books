@@ -1,13 +1,13 @@
 .books-filters-container {
-    border-block-end: 2px dashed lightblue;
+    border-block-end: 2px dashed var(--primary-clr);
     margin-block-end: 20px;
 
     .filter-header {
         margin-block-end: .3em;
+        text-align: center;
     }
 
     .books-filters {
         column-gap: 25px;
-        
     }
 }

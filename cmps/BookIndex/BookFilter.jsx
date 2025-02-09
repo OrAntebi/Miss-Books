@@ -17,9 +17,9 @@ export function BookFilter({ onSetFilter, filterBy }) {
 
 	return (
 		<React.Fragment>
-			<h2 className="filter-header">Filter books</h2>
+			<h2 className="filter-header">Filter Books</h2>
 
-			<div className="books-filters flex">
+			<div className="books-filters flex justify-center">
 				<div className="filter-section">
 					<label htmlFor="byTitle" className="label">Title</label>
 					<input type="text" id="byTitle" name="title" value={title} onChange={handleChange} className="input" placeholder="Search by title" />
