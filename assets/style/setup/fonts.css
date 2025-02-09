@@ -1,9 +1,9 @@
 @font-face {
     font-family: Caudex-Bold;
-    src: url(assets/style/fonts/Caudex/Caudex-Bold.ttf);
+    src: url(/assets/style/fonts/Caudex/Caudex-Bold.ttf);
 }
 
 @font-face {
     font-family: Caudex-Regular;
-    src: url(assets/style/fonts/Caudex/Caudex-Regular.ttf);
+    src: url(/assets/style/fonts/Caudex/Caudex-Regular.ttf);
 }
