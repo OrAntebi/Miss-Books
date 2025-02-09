@@ -13,7 +13,7 @@ const KEY = 'booksDB'
 
 
 function query(filterBy) {
-    return storageService.query(KEY)
+    return storageService.query(KEY, 2000)
         .then(books => {
             if (!books || !books.length) {
                 books = booksData

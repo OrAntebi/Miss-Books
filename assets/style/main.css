@@ -17,6 +17,7 @@
 
 @import url(cmps/AboutUs/AboutUs.css);
 
+@import url(cmps/BookIndex/Loader.css);
 @import url(cmps/BookIndex/BookFilter.css);
 @import url(cmps/BookIndex/BookList.css);
 @import url(cmps/BookIndex/BookPreview.css);
