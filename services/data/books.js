@@ -16,7 +16,7 @@ export const booksData = [
     "thumbnail": "./assets/img/1.jpg",
     "language": "en",
     "listPrice": {
-      "amount": 109,
+      "amount": 322,
       "currencyCode": "EUR",
       "isOnSale": false
     }
@@ -390,7 +390,7 @@ export const booksData = [
     "thumbnail": "./assets/img/18.jpg",
     "language": "he",
     "listPrice": {
-      "amount": 60,
+      "amount": 250,
       "currencyCode": "EUR",
       "isOnSale": false
     }

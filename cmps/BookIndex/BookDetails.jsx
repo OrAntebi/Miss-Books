@@ -12,7 +12,6 @@ export function BookDetails({ book, onGoBack }) {
         pageCount,
     } = book;
 
-    const formattedPrice = listPrice.amount.toLocaleString('en-US', { style: 'currency', currency: listPrice.currencyCode });
 
     function getBookLng(lng) {
         const languageMap = {
@@ -22,7 +21,39 @@ export function BookDetails({ book, onGoBack }) {
     
         return languageMap[lng] || 'English';
     }
+
+    function getPublishDate() {
+        const currYear = new Date().getFullYear()
+        let publishedYear = book.publishedDate
+        let diff = currYear - publishedYear
+        if (diff > 10) publishedYear += ' - Vintage';
+        else if (diff < 3) publishedYear += ' - NEW!'
+        return publishedYear
+    }
+
+    function getPageCount() {
+        let pageCount = book.pageCount
+        
+        if (book.pageCount > 500) pageCount += ' - Long reading'
+        else if (book.pageCount > 200) pageCount += ' - Decent reading'
+        else if (book.pageCount < 100) pageCount += ' - Light reading'
+        return pageCount
+    }
+
+    function getPriceDetails(book) {
+        const formattedPrice = book.listPrice.amount.toLocaleString('en-US', {
+            style: 'currency',
+            currency: book.listPrice.currencyCode,
+        });
     
+        let priceClass = '';
+        if (book.listPrice.amount > 150) priceClass = 'red';
+        else if (book.listPrice.amount < 20) priceClass = 'green';
+    
+        return { formattedPrice, priceClass };
+    }
+    
+    const { formattedPrice, priceClass } = getPriceDetails(book)
 
     return (
         <section className="book-details-container flex">
@@ -34,11 +65,11 @@ export function BookDetails({ book, onGoBack }) {
                     <p><strong>Authors:</strong> {authors.join(', ')}</p>
                     <p><strong>Language:</strong> {getBookLng(language)}</p>
                     <p><strong>Categories:</strong> {categories.join(', ')}</p>
-                    <p><strong>Published:</strong> {publishedDate}</p>
-                    <p><strong>Page Count:</strong> {pageCount}</p>
+                    <p><strong>Published:</strong> {getPublishDate()}</p>
+                    <p><strong>Page Count:</strong> {getPageCount()}</p>
                     <h3>Description</h3>
                     <p>{description}</p>
-                    <h3>Price: {formattedPrice}</h3>
+                    <h3>Price: <span className={priceClass}>{formattedPrice}</span></h3>
                     {listPrice.isOnSale && <p className="sale">On Sale!</p>}
                     <button onClick={onGoBack} className="btn back-btn">Go Back</button>
                 </section>
