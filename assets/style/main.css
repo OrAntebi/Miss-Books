@@ -5,6 +5,8 @@
 
 /* PATTERNS */
 @import url(base/pattern/button.css);
+@import url(base/pattern/label.css);
+@import url(base/pattern/input.css);
 
 /* CMPS */
 @import url(cmps/Header/AppHeader.css);
@@ -12,6 +14,8 @@
 @import url(cmps/Header/Navigation.css);
 
 @import url(cmps/Home/Welcome.css);
+
+@import url(cmps/AboutUs/AboutUs.css);
 
 @import url(cmps/BookIndex/BookFilter.css);
 @import url(cmps/BookIndex/BookList.css);

@@ -1,6 +1,6 @@
 .book-list {
     flex-wrap: wrap;
-    gap: 10px;
+    gap: var(--gap);
 
     .book-container {
         flex-grow: 1;

@@ -13,14 +13,21 @@ export const bookService = {
 const KEY = 'booksDB'
 
 
-function query() {
-    
+function query(filterBy) {
     return storageService.query(KEY)
         .then(books => {
             if (!books || !books.length) {
                 books = booksData
                 _saveBooksToStorage()
             }
+            if (filterBy.title) {
+                const regExp = new RegExp(filterBy.title, 'i')
+                books = books.filter(b => regExp.test(b.title))
+            }
+            if (filterBy.price) {
+                books = books.filter(b => b.listPrice.amount <= filterBy.price)
+            }
+
             return books
         })
         .catch(error => console.log(error))

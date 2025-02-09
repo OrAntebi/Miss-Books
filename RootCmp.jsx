@@ -8,7 +8,7 @@ const { useState } = React
 
 export function App() {
 
-    const [page, setPage] = useState('home')
+    const [page, setPage] = useState('books')
 
     function onSetPage(page) {
         setPage(page)

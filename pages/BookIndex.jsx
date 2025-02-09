@@ -1,18 +1,20 @@
+const { useEffect, useState } = React
+
 import { bookService } from '../services/books.service.js'
 import { BookFilter } from '../cmps/BookIndex/BookFilter.jsx';
 import { BookList } from '../cmps/BookIndex/BookList.jsx';
 
-const { useState, useEffect } = React
 
 export function BookIndex() {
     const [books, setBooks] = useState(null)
+    const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
     useEffect(() => {
         loadBooks()
-    }, [])
+    }, [filterBy])
 
     function loadBooks() {
-        bookService.query()
+        bookService.query(filterBy)
             .then(books => {
                 setBooks(books)
             })
@@ -24,11 +26,15 @@ export function BookIndex() {
                 prevBooks.filter(book => book.id !== bookId)))
     }
 
+    function onSetFilter(filterBy) {
+        setFilterBy(filterBy)
+    }
+
     if (!books) return <div>Loading...</div>
     return (
         <section className="book-index-page">
-            <section className="book-filter">
-                <BookFilter />
+            <section className="books-filters-container">
+                <BookFilter onSetFilter={onSetFilter} filterBy={filterBy} />
             </section>
 
             <section className="book-list flex justify-between">
