@@ -15,13 +15,13 @@ export function App() {
     }
 
     return (
-        <section className="app">
+        <section className="app main-layout">
 
             <section className="header-container main-layout full">
                 <AppHeader onSetPage={onSetPage} />
             </section>
 
-            <main className="main-layout">
+            <main className="main-content">
                 {page === 'home' && <HomePage />}
                 {page === 'about' && <AboutUsPage />}
                 {page === 'books' && <BookIndex />}

@@ -3,10 +3,8 @@
 @import url(base/helpers.css);
 @import url(base/layout.css);
 
-/* PAGES */
-@import url(pages/HomePage.css);
-@import url(pages/AboutUsPage.css);
-@import url(pages/BookIndex.css);
+/* PATTERNS */
+@import url(base/pattern/button.css);
 
 /* CMPS */
 @import url(cmps/Header/AppHeader.css);
@@ -24,3 +22,4 @@
 
 /* SETUP */
 @import url(setup/vars.css);
+@import url(setup/fonts.css);

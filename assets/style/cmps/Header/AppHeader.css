@@ -1,3 +1,6 @@
 .header-container {
-    background-color: lightblue;
+    margin-block-end: 20px;
+    
+    background: linear-gradient(120deg, #89f7fe, #66a6ff);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }

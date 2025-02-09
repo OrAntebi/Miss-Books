@@ -4,9 +4,26 @@
 
     .book-container {
         flex-grow: 1;
-        
+        gap: var(--gap);
+
         .book-actions {
             gap: 10px;
+
+            .delete-btn {
+                background: linear-gradient(30deg, #ff4e50, #f9d423);
+
+                &:hover {
+                    box-shadow: 0 8px 15px rgba(255, 78, 80, 0.4);
+                }
+            }
+
+            .select-btn {
+                background: linear-gradient(30deg, #43cea2, #185a9d);
+
+                &:hover {
+                    box-shadow: 0 8px 15px rgba(67, 206, 162, 0.4);
+                }
+            }
         }
     }
 }

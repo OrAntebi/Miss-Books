@@ -6,6 +6,7 @@
 
 body {
   margin: 0;
+  font-family: Caudex-Regular, serif;
 }
 
 h1,
@@ -15,7 +16,6 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family: 'Edu VIC WA NT Beginner', cursive;
 }
 
 p {

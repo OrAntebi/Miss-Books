@@ -18,13 +18,10 @@ export function BookIndex() {
                 setBooks(books)
             })
     }
-    
-    if (!books) return <div>Loading...</div>
 
+    if (!books) return <div>Loading...</div>
     return (
         <section className="book-index-page">
-            <h1>Book Index</h1>
-
             <section className="book-filter">
                 <BookFilter />
             </section>

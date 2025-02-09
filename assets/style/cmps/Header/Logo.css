@@ -1,5 +1,9 @@
 .logo {
     flex-grow: 1;
 
-    font-size: 2.5rem;
+    font-family: Caudex-Bold, serif;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
