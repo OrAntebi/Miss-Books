@@ -7,7 +7,7 @@
         gap: var(--gap);
 
         .book-actions {
-            gap: 10px;
+            gap: var(--gap);
 
             .delete-btn {
                 background: linear-gradient(30deg, #ff4e50, #f9d423);

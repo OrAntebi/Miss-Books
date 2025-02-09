@@ -5,7 +5,6 @@ import { BookList } from '../cmps/BookIndex/BookList.jsx';
 const { useState, useEffect } = React
 
 export function BookIndex() {
-
     const [books, setBooks] = useState(null)
 
     useEffect(() => {
@@ -19,6 +18,12 @@ export function BookIndex() {
             })
     }
 
+    function onDeleteBook(bookId) {
+        bookService.remove(bookId)
+            .then(() => setBooks(prevBooks =>
+                prevBooks.filter(book => book.id !== bookId)))
+    }
+
     if (!books) return <div>Loading...</div>
     return (
         <section className="book-index-page">
@@ -27,7 +32,7 @@ export function BookIndex() {
             </section>
 
             <section className="book-list flex justify-between">
-                {books.length && <BookList books={books} />}
+                {books.length && <BookList books={books} onDeleteBook={onDeleteBook} />}
             </section>
         </section>
     )
