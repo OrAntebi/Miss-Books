@@ -1,14 +1,9 @@
 
 import { BookPreview } from './BookPreview.jsx'
 
-export function BookList({ books, onDeleteBook }) {
-
+export function BookList({ books, onSelectBook, onDeleteBook }) {
     let imgNumber = 1
-
-    function onSelectBook(bookId) {
-
-    }
-
+    console.log(books)
     return (
         <React.Fragment>
             {books.map(book => {

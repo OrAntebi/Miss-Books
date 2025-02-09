@@ -1,7 +1,7 @@
 button {
     border: none;
     color: #fff;
-    background: linear-gradient(30deg, #0400ff, #4ce3f7);
+    background: linear-gradient(30deg, #00308F, #6CB4EE);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     background-size: 100% auto;
@@ -9,3 +9,4 @@ button {
     font-size: 1em;
     padding: 0.6em 1.5em;
 }
+

@@ -1,5 +1,4 @@
 import { storageService } from './async-storage.service.js'
-import { utilService } from './util-service.js'
 import { booksData } from './data/books.js'
 
 export const bookService = {

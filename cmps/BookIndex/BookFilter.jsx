@@ -16,7 +16,8 @@ export function BookFilter({ onSetFilter, filterBy }) {
 	const { title, price } = filterByToEdit
 
 	return (
-		<React.Fragment>
+		<section className="books-filters-container">
+
 			<h2 className="filter-header">Filter Books</h2>
 
 			<div className="books-filters flex justify-center">
@@ -30,6 +31,6 @@ export function BookFilter({ onSetFilter, filterBy }) {
 					<input type="number" id="price" name="price" value={price || ''} onChange={handleChange} className="input" placeholder="Search by price" />
 				</div>
 			</div>
-		</React.Fragment>
+		</section>
 	)
 }

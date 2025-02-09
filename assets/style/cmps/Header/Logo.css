@@ -1,10 +1,12 @@
 .logo {
     flex-grow: 1;
-
+    
     font-family: Caudex-Bold, serif;
     font-size: 3rem;
     font-weight: bold;
     color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 0, 0, 0.1);
+
     cursor: pointer;
 }

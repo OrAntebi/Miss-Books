@@ -13,7 +13,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/20.jpg",
+    "thumbnail": "./assets/img/1.jpg",
     "language": "en",
     "listPrice": {
       "amount": 109,
@@ -35,7 +35,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/14.jpg",
+    "thumbnail": "./assets/img/2.jpg",
     "language": "sp",
     "listPrice": {
       "amount": 44,
@@ -57,7 +57,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/2.jpg",
+    "thumbnail": "./assets/img/3.jpg",
     "language": "he",
     "listPrice": {
       "amount": 108,
@@ -79,7 +79,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/16.jpg",
+    "thumbnail": "./assets/img/4.jpg",
     "language": "en",
     "listPrice": {
       "amount": 30,
@@ -101,7 +101,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/12.jpg",
+    "thumbnail": "./assets/img/5.jpg",
     "language": "sp",
     "listPrice": {
       "amount": 19,
@@ -123,7 +123,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/1.jpg",
+    "thumbnail": "./assets/img/6.jpg",
     "language": "en",
     "listPrice": {
       "amount": 91,
@@ -145,7 +145,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/14.jpg",
+    "thumbnail": "./assets/img/7.jpg",
     "language": "he",
     "listPrice": {
       "amount": 90,
@@ -167,7 +167,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/11.jpg",
+    "thumbnail": "./assets/img/8.jpg",
     "language": "he",
     "listPrice": {
       "amount": 176,
@@ -189,7 +189,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/10.jpg",
+    "thumbnail": "./assets/img/9.jpg",
     "language": "sp",
     "listPrice": {
       "amount": 116,
@@ -211,7 +211,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/5.jpg",
+    "thumbnail": "./assets/img/10.jpg",
     "language": "en",
     "listPrice": {
       "amount": 145,
@@ -233,7 +233,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/16.jpg",
+    "thumbnail": "./assets/img/11.jpg",
     "language": "sp",
     "listPrice": {
       "amount": 157,
@@ -255,7 +255,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/17.jpg",
+    "thumbnail": "./assets/img/12.jpg",
     "language": "sp",
     "listPrice": {
       "amount": 57,
@@ -277,7 +277,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/8.jpg",
+    "thumbnail": "./assets/img/13.jpg",
     "language": "en",
     "listPrice": {
       "amount": 167,
@@ -299,7 +299,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/3.jpg",
+    "thumbnail": "./assets/img/14.jpg",
     "language": "he",
     "listPrice": {
       "amount": 150,
@@ -321,7 +321,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/6.jpg",
+    "thumbnail": "./assets/img/15.jpg",
     "language": "en",
     "listPrice": {
       "amount": 58,
@@ -343,7 +343,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/7.jpg",
+    "thumbnail": "./assets/img/16.jpg",
     "language": "en",
     "listPrice": {
       "amount": 78,
@@ -365,7 +365,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/10.jpg",
+    "thumbnail": "./assets/img/17.jpg",
     "language": "en",
     "listPrice": {
       "amount": 118,
@@ -387,7 +387,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/12.jpg",
+    "thumbnail": "./assets/img/18.jpg",
     "language": "he",
     "listPrice": {
       "amount": 60,
@@ -409,7 +409,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/20.jpg",
+    "thumbnail": "./assets/img/19.jpg",
     "language": "he",
     "listPrice": {
       "amount": 110,
@@ -431,7 +431,7 @@ export const booksData = [
       "Computers",
       "Hack"
     ],
-    "thumbnail": "http://coding-academy.org/books-photos/2.jpg",
+    "thumbnail": "./assets/img/20.jpg",
     "language": "sp",
     "listPrice": {
       "amount": 186,

@@ -16,7 +16,6 @@
                     background-position: right center;
                     background-size: 200% auto;
                     animation: pulseSelect 1.5s infinite;
-                    box-shadow: 0 8px 10px rgba(67, 206, 162, 0.4);
                 }
             }
 
@@ -27,7 +26,6 @@
                     background-position: right center;
                     background-size: 200% auto;
                     animation: pulseDelete 1.5s infinite;
-                    box-shadow: 0 8px 10px rgba(255, 78, 80, 0.4);
                 }
             }
 
