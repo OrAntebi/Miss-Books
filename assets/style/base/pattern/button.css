@@ -1,4 +1,4 @@
-button {
+button, .btn {
     border: none;
     color: #fff;
     background: linear-gradient(30deg, #00308F, #6CB4EE);

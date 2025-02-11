@@ -1,7 +1,8 @@
+const { Link } = ReactRouterDOM
 
 import { BookPreview } from './BookPreview.jsx'
 
-export function BookList({ books, onSelectBook, onDeleteBook }) {
+export function BookList({ books, onDeleteBook }) {
     let imgNumber = 1
 
     return (
@@ -11,7 +12,7 @@ export function BookList({ books, onSelectBook, onDeleteBook }) {
                     <article className='book-container flex flex-column align-center justify-center' key={book.id}>
                         <BookPreview book={book} imgNumber={imgNumber++} />
                         <section className="book-actions flex justify-between">
-                            <button className="btn select-btn" onClick={() => onSelectBook(book.id)}>Select</button>
+                            <Link to={`/books/${book.id}`} className="btn select-btn" book={book}>Select</Link>
                             <button className="btn delete-btn" onClick={() => onDeleteBook(book.id)}>Delete</button>
                         </section>
                     </article>
