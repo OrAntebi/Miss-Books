@@ -3,9 +3,7 @@
 .main-layout {
     display: grid;
     grid-template-columns:
-        minmax(40px, 1fr)
-        minmax(auto, 1400px)
-        minmax(40px, 1fr);
+        minmax(40px, 1fr) minmax(auto, 1350px) minmax(40px, 1fr);
     row-gap: 20px;
 }
 
@@ -14,5 +12,22 @@
 }
 
 .main-layout>*.full {
+    grid-column: 1 / -1;
+}
+
+/* secondary layout */
+
+.secondary-layout {
+    display: grid;
+    grid-template-columns:
+        minmax(40px, 1fr) minmax(auto, 1000px) minmax(40px, 1fr);
+    row-gap: 20px;
+}
+
+.secondary-layout>*:not(.full) {
+    grid-column: 2;
+}
+
+.secondary-layout>*.full {
     grid-column: 1 / -1;
 }

@@ -34,7 +34,7 @@ export function BookIndex() {
 
     if (!books) return <Loader />
     return (
-        <section className="book-index-page">
+        <section className="book-index-page full">
                 <React.Fragment>
                     <BookFilter onSetFilter={onSetFilter} filterBy={filterBy} />
                     <section className="book-list flex justify-center">

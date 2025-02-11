@@ -1,8 +1,10 @@
 .book-details-container {
-    column-gap: var(--gap);
+    column-gap: 30px;
 
     .book-info {
 
+        gap: 10px;
+        text-align: start;
 
         h1 {
             font-size: 2.5rem;
@@ -12,14 +14,14 @@
             text-wrap: balance;
         }
 
-        .back-btn {
-            align-self: center;
+    }
+    .back-btn {
+        align-self: center;
 
-            &:hover {
-                background-position: right center;
-                background-size: 200% auto;
-                animation: pulseBack 1.5s infinite;
-            }
+        &:hover {
+            background-position: right center;
+            background-size: 200% auto;
+            animation: pulseBack 1.5s infinite;
         }
     }
 }
