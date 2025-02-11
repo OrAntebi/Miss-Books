@@ -1,11 +1,16 @@
+const { Link } = ReactRouterDOM
+
 import { Logo } from './Logo.jsx'
 import { Navigation } from './Navigation.jsx'
 
-export function AppHeader({ onSetPage }) {
+export function AppHeader() {
     return (
         <header className="app-header flex justify-between align-center">
-            <Logo onSetPage={onSetPage} />
-            <Navigation onSetPage={onSetPage} />
+            <Link to='/'>
+                <Logo />
+            </Link>
+
+            <Navigation />
         </header>
     )
 }

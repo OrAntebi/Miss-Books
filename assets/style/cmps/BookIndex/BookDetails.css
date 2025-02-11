@@ -1,13 +1,6 @@
 .book-details-container {
     column-gap: var(--gap);
 
-    margin: 40px auto;
-    padding: 40px;
-
-    color: #444;
-    background-color: #ffffff;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-
     .book-info {
 
 

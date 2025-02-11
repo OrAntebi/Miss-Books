@@ -1,6 +1,6 @@
-export function Logo({ onSetPage }) {
+export function Logo() {
     return (
-        <article className="logo" onClick={() => onSetPage('home')}>
+        <article className="logo">
             Miss Books
         </article>
     )

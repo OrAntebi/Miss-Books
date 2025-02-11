@@ -31,9 +31,6 @@ a {
   color: unset;
 }
 
-
-
-/* Dont stretch my Media */
 img,
 embed,
 video,
@@ -41,7 +38,6 @@ object {
   max-width: 100%
 }
 
-/* Simple and useful CSS Debugging Technique */
 .debug * {
   outline: 1px solid gold
 }

@@ -3,7 +3,7 @@ import { BookPreview } from './BookPreview.jsx'
 
 export function BookList({ books, onSelectBook, onDeleteBook }) {
     let imgNumber = 1
-    console.log(books)
+
     return (
         <React.Fragment>
             {books.map(book => {

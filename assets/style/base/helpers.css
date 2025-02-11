@@ -43,3 +43,15 @@
 .green {
     color: green;
 }
+
+/* active link */
+
+.active {
+    font-family: Caudex-Bold, serif;
+    background-color: var(--secondary-clr);
+}
+
+/* hidden element */
+.hidden {
+    display: none;
+}

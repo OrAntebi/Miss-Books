@@ -2,6 +2,7 @@
 @import url(base/base.css);
 @import url(base/helpers.css);
 @import url(base/layout.css);
+@import url(base/main-content.css);
 
 /* PATTERNS */
 @import url(base/pattern/button.css);
@@ -12,6 +13,7 @@
 @import url(cmps/Header/AppHeader.css);
 @import url(cmps/Header/Logo.css);
 @import url(cmps/Header/Navigation.css);
+
 
 @import url(cmps/Home/Welcome.css);
 

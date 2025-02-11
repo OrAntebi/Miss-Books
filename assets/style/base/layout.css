@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns:
         minmax(40px, 1fr)
-        minmax(auto, 1200px)
+        minmax(auto, 1400px)
         minmax(40px, 1fr);
     row-gap: 20px;
 }

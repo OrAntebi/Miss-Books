@@ -1,11 +1,4 @@
 .home-page {
-    padding: 40px;
-    color: #444;
-    text-align: center;
-    background-color: #ffffff;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-    max-width: 800px;
-    margin: 40px auto;
 
     h1 {
         font-size: 2.5em;

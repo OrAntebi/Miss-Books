@@ -1,5 +1,5 @@
 
-export function AboutUsPage() {
+export function About() {
     return (
         <section className="about-us-page">
             <h1>About Us</h1>
