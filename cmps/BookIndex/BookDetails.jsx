@@ -77,7 +77,11 @@ export function BookDetails() {
 
     return (
         <section className="book-details-container flex">
-            <img src={thumbnail} alt="book thumbnail" />
+
+            <div className={'book-thumbnil-container ' + (listPrice.isOnSale ? 'on-sale' : '')}>
+                <img src={thumbnail} alt="book thumbnail"/>
+            </div>
+
 
             <div className="flex flex-column justify-between">
                 <section className="book-info flex flex-column justify-between">
@@ -91,7 +95,6 @@ export function BookDetails() {
                     <h3>Description</h3>
                     <p>{description}</p>
                     <h3>Price: <span className={priceClass}>{formattedPrice}</span></h3>
-                    {listPrice.isOnSale && <p className="sale">On Sale!</p>}
                 </section>
                 <Link to='/books' className="btn back-btn flex">Go Back</Link>
             </div>
