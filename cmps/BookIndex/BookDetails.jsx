@@ -8,6 +8,9 @@ export function BookDetails() {
     const [book, setBook] = useState(null)
     const { bookId } = useParams()
 
+    const [isExpanded, setIsExpanded] = useState(false)
+    const [shortDescription, setShortDescription] = useState('')
+
     useEffect(() => {
         getBookData()
     }, [bookId])
@@ -16,6 +19,9 @@ export function BookDetails() {
         bookService.getById(bookId)
             .then(book => {
                 setBook(book)
+                const description = book.description
+                const shortDesc = getShortDescription(description)
+                setShortDescription(shortDesc)
             })
     }
 
@@ -32,6 +38,7 @@ export function BookDetails() {
         listPrice,
     } = book
 
+    const { formattedPrice, priceClass } = getPriceDetails(book)
 
     function getBookLng(lng) {
         const languageMap = {
@@ -60,6 +67,15 @@ export function BookDetails() {
         return pageCount
     }
 
+    function getShortDescription(description) {
+        if (description.length > 100) return description.slice(0, 100) + '...'
+        return description
+    }    
+
+    function toggleDescription() {
+        setIsExpanded(!isExpanded)
+    }
+
     function getPriceDetails(book) {
         const formattedPrice = book.listPrice.amount.toLocaleString('en-US', {
             style: 'currency',
@@ -73,13 +89,11 @@ export function BookDetails() {
         return { formattedPrice, priceClass }
     }
 
-    const { formattedPrice, priceClass } = getPriceDetails(book)
-
     return (
         <section className="book-details-container flex">
 
             <div className={'book-thumbnil-container ' + (listPrice.isOnSale ? 'on-sale' : '')}>
-                <img src={thumbnail} alt="book thumbnail"/>
+                <img src={thumbnail} alt="book thumbnail" />
             </div>
 
 
@@ -93,7 +107,15 @@ export function BookDetails() {
                     <p><strong>Published:</strong> {getPublishDate()}</p>
                     <p><strong>Page Count:</strong> {getPageCount()}</p>
                     <h3>Description</h3>
-                    <p>{description}</p>
+
+                    <p>
+                        {isExpanded ? description : shortDescription}
+                        {description.length > 100 && (
+                            <span onClick={toggleDescription} className="show-more">
+                                {isExpanded ? 'Show Less' : 'Show More'}
+                            </span>)}
+                    </p>
+
                     <h3>Price: <span className={priceClass}>{formattedPrice}</span></h3>
                 </section>
                 <Link to='/books' className="btn back-btn flex">Go Back</Link>
