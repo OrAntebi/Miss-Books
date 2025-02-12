@@ -2,6 +2,7 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomInt,
+    convertRatingToStars
 }
 
 function makeId(length = 25) {
@@ -29,5 +30,17 @@ function makeLorem(size = 100) {
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min); 
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+
+function convertRatingToStars(rating, maxRating = 5) {
+    const stars = []
+    for (let i = 0; i < rating; i++) {
+        stars.push(<img key={`filled-star-${i}`} className="rating-img" src="./assets/img/star-icon.png" alt="star-icon" />)
+    }
+    for (let i = rating; i < maxRating; i++) {
+        stars.push(<img key={`empty-star-${i}`} className="rating-img" src="./assets/img/star-line-yellow-icon.png" alt="star-line-yellow-icon" />)
+    }
+    return stars
 }

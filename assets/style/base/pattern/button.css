@@ -1,4 +1,5 @@
-button, .btn {
+button,
+.btn {
     border: none;
     color: #fff;
     background: linear-gradient(30deg, #00308F, #6CB4EE);
@@ -8,5 +9,24 @@ button, .btn {
     font-family: inherit;
     font-size: 1em;
     padding: 0.6em 1.5em;
+    cursor: pointer;
+
+    &:hover {
+        animation: pulse 1.5s infinite;
+    }
 }
 
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 48, 143, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(218, 103, 68, 0%);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(218, 103, 68, 0%);
+    }
+}

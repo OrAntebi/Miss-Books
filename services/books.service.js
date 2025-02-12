@@ -6,14 +6,14 @@ export const bookService = {
     getById,
     remove,
     save,
-    getDefaultFilter
+    getDefaultFilter,
+    addReview
 }
 
-const KEY = 'booksDB'
-
+const BOOK_KEY = 'booksDB'
 
 function query(filterBy) {
-    return storageService.query(KEY, 1000)
+    return storageService.query(BOOK_KEY, 1000)
         .then(books => {
             if (!books || !books.length) {
                 books = booksData
@@ -33,12 +33,12 @@ function query(filterBy) {
 }
 
 function getById(bookId) {
-    return storageService.get(KEY, bookId)
+    return storageService.get(BOOK_KEY, bookId)
         .then(_setPrevNextBookId)
 }
 
 function remove(bookId) {
-    return storageService.remove(KEY, bookId)
+    return storageService.remove(BOOK_KEY, bookId)
 }
 
 function save(book) {
@@ -49,20 +49,32 @@ function getDefaultFilter() {
     return { title: '', price: 0 }
 }
 
+function addReview(bookId, review) {
+    return storageService.get(BOOK_KEY, bookId)
+        .then(book => {
+            if (!book) throw new Error('Book not found!')
+
+            if (!book.reviews) book.reviews = []
+    
+            book.reviews.push(review)
+            return storageService.put(BOOK_KEY, book)
+        })
+}
+
 function _updateBook(book) {
-    return storageService.put(KEY, book)
+    return storageService.put(BOOK_KEY, book)
 }
 
 function _addBook(book) {
-    return storageService.post(KEY, book)
+    return storageService.post(BOOK_KEY, book)
 }
 
 function _saveBooksToStorage() {
-    storageService.save(KEY, booksData)
+    storageService.save(BOOK_KEY, booksData)
 }
 
 function _setPrevNextBookId(book) {
-    return storageService.query(KEY, 0)
+    return storageService.query(BOOK_KEY, 0)
         .then(books => {
             const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
             const prevBook = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]

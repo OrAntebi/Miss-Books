@@ -1,11 +1,13 @@
 const { useParams, Link } = ReactRouterDOM
 const { useEffect, useState } = React
-import { bookService } from "../../services/books.service.js"
+import { bookService } from '../../services/books.service.js'
 import { Loader } from '../Util-Cmps/Loader.jsx'
-import { LongText } from "../Util-Cmps/LongText.jsx"
+import { LongText } from '../Util-Cmps/LongText.jsx'
+import { AddReview } from './AddReview.jsx'
 
 export function BookDetails() {
     const [book, setBook] = useState(null)
+    const [isReviewing, setIsReviewing] = useState(false)
     const { bookId } = useParams()
 
     useEffect(() => {
@@ -74,6 +76,10 @@ export function BookDetails() {
         return { formattedPrice, priceClass }
     }
 
+    function handleAddReviewClick() {
+        setIsReviewing(true)
+    }
+
     return (
         <section className="book-details-container flex">
 
@@ -102,7 +108,12 @@ export function BookDetails() {
                 <section className="book-actions-container flex justify-between">
                     <Link to={`/books/${prevBookId}`} className="btn prev-btn">Previous Book</Link>
                     <Link to='/books' className="btn back-btn">Go Back</Link>
+                    <button className="btn add-review-btn" onClick={handleAddReviewClick}>Add Review</button>
                     <Link to={`/books/${nextBookId}`} className="btn next-btn">Next Book</Link>
+                </section>
+
+                <section className="reviews-container">
+                    {isReviewing && <AddReview bookId={bookId} />}
                 </section>
             </div>
         </section>
