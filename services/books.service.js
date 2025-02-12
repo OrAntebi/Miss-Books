@@ -13,7 +13,7 @@ const KEY = 'booksDB'
 
 
 function query(filterBy) {
-    return storageService.query(KEY, 500)
+    return storageService.query(KEY, 1000)
         .then(books => {
             if (!books || !books.length) {
                 books = booksData
@@ -34,6 +34,7 @@ function query(filterBy) {
 
 function getById(bookId) {
     return storageService.get(KEY, bookId)
+        .then(_setPrevNextBookId)
 }
 
 function remove(bookId) {
@@ -58,5 +59,17 @@ function _addBook(book) {
 
 function _saveBooksToStorage() {
     storageService.save(KEY, booksData)
+}
+
+function _setPrevNextBookId(book) {
+    return storageService.query(KEY, 0)
+        .then(books => {
+            const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
+            const prevBook = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
+            const nextBook = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
+            book.prevBookId = prevBook.id
+            book.nextBookId = nextBook.id
+            return book
+        })
 }
 

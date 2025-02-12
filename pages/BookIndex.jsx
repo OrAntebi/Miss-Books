@@ -1,7 +1,7 @@
 const { useEffect, useState } = React
 
 import { bookService } from '../services/books.service.js'
-import { Loader } from '../cmps/Loader.jsx'
+import { Loader } from '../cmps/Util-Cmps/Loader.jsx'
 import { BookFilter } from '../cmps/BookIndex/BookFilter.jsx';
 import { BookList } from '../cmps/BookIndex/BookList.jsx';
 
@@ -35,16 +35,14 @@ export function BookIndex() {
     if (!books) return <Loader />
     return (
         <section className="book-index-page full">
-                <React.Fragment>
-                    <BookFilter onSetFilter={onSetFilter} filterBy={filterBy} />
-                    <section className="book-list flex justify-center">
-                        {books.length ? (
-                            <BookList books={books} onDeleteBook={onDeleteBook} />
-                        ) : (
-                            <h2 className="no-books-found">No books found..</h2>
-                        )}
-                    </section>
-                </React.Fragment>
+            <BookFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+            <section className="book-list flex justify-center">
+                {books.length ? (
+                    <BookList books={books} onDeleteBook={onDeleteBook} />
+                ) : (
+                    <h2 className="no-books-found">No books found..</h2>
+                )}
+            </section>
         </section>
 
     )

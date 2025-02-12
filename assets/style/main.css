@@ -10,6 +10,8 @@
 @import url(base/pattern/input.css);
 
 /* CMPS */
+@import url(cmps/Util-Cmps/Loader.css);
+
 @import url(cmps/Header/AppHeader.css);
 @import url(cmps/Header/Logo.css);
 @import url(cmps/Header/Navigation.css);
@@ -19,7 +21,6 @@
 
 @import url(cmps/AboutUs/AboutUs.css);
 
-@import url(cmps/BookIndex/Loader.css);
 @import url(cmps/BookIndex/BookFilter.css);
 @import url(cmps/BookIndex/BookList.css);
 @import url(cmps/BookIndex/BookPreview.css);

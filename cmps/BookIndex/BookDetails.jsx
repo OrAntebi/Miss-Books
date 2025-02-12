@@ -1,15 +1,12 @@
 const { useParams, Link } = ReactRouterDOM
 const { useEffect, useState } = React
 import { bookService } from "../../services/books.service.js"
-import { Loader } from '../cmps/Loader.jsx'
-
+import { Loader } from '../Util-Cmps/Loader.jsx'
+import { LongText } from "../Util-Cmps/LongText.jsx"
 
 export function BookDetails() {
     const [book, setBook] = useState(null)
     const { bookId } = useParams()
-
-    const [isExpanded, setIsExpanded] = useState(false)
-    const [shortDescription, setShortDescription] = useState('')
 
     useEffect(() => {
         getBookData()
@@ -17,12 +14,7 @@ export function BookDetails() {
 
     function getBookData() {
         bookService.getById(bookId)
-            .then(book => {
-                setBook(book)
-                const description = book.description
-                const shortDesc = getShortDescription(description)
-                setShortDescription(shortDesc)
-            })
+            .then(book => setBook(book))
     }
 
     if (!book) return <Loader />
@@ -36,6 +28,8 @@ export function BookDetails() {
         language,
         categories,
         listPrice,
+        prevBookId,
+        nextBookId
     } = book
 
     const { formattedPrice, priceClass } = getPriceDetails(book)
@@ -67,15 +61,6 @@ export function BookDetails() {
         return pageCount
     }
 
-    function getShortDescription(description) {
-        if (description.length > 100) return description.slice(0, 100) + '...'
-        return description
-    }    
-
-    function toggleDescription() {
-        setIsExpanded(!isExpanded)
-    }
-
     function getPriceDetails(book) {
         const formattedPrice = book.listPrice.amount.toLocaleString('en-US', {
             style: 'currency',
@@ -101,24 +86,24 @@ export function BookDetails() {
                 <section className="book-info flex flex-column justify-between">
                     <h2>{title}</h2>
                     <h3>{subtitle}</h3>
+
                     <p><strong>Authors:</strong> {authors.join(', ')}</p>
                     <p><strong>Language:</strong> {getBookLng(language)}</p>
                     <p><strong>Categories:</strong> {categories.join(', ')}</p>
                     <p><strong>Published:</strong> {getPublishDate()}</p>
                     <p><strong>Page Count:</strong> {getPageCount()}</p>
-                    <h3>Description</h3>
 
-                    <p>
-                        {isExpanded ? description : shortDescription}
-                        {description.length > 100 && (
-                            <span onClick={toggleDescription} className="show-more">
-                                {isExpanded ? 'Show Less' : 'Show More'}
-                            </span>)}
-                    </p>
+                    <h3>Description</h3>
+                    <LongText text={description} />
 
                     <h3>Price: <span className={priceClass}>{formattedPrice}</span></h3>
                 </section>
-                <Link to='/books' className="btn back-btn flex">Go Back</Link>
+
+                <section className="book-actions-container flex justify-between">
+                    <Link to={`/books/${prevBookId}`} className="btn prev-btn">Previous Book</Link>
+                    <Link to='/books' className="btn back-btn">Go Back</Link>
+                    <Link to={`/books/${nextBookId}`} className="btn next-btn">Next Book</Link>
+                </section>
             </div>
         </section>
     )
