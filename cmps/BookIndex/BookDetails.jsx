@@ -77,20 +77,21 @@ export function BookDetails() {
 
         return { formattedPrice, priceClass }
     }
+
     function handleAddReviewClick() {
         addReviewPopup()
             .then(reviewData => {
+                if (!reviewData) return
                 bookService.addReview(bookId, reviewData)
                     .then(updatedBook => {
-                        console.log(updatedBook)
-                        setBook(updatedBook);
-                        setNewReview(reviewData);
+                        setBook(updatedBook)
+                        setNewReview(reviewData)
                     })
+                    .catch(err => console.error('Error in adding review:', err))
             })
-            .catch(err => {
-                console.error('Error in addReviewPopup:', err);
-            });
+            .catch(err => console.error('Error in addReviewPopup:', err))
     }
+
 
     return (
         <section className="book-details-container">

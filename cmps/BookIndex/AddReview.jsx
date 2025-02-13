@@ -1,34 +1,34 @@
 const { useState, useEffect } = React
-import { bookService } from "../../services/books.service.js";
-import { utilService } from "../../services/util-service.js";
+import { bookService } from "../../services/books.service.js"
+import { utilService } from "../../services/util-service.js"
 
 export function AddReview({ bookId, newReview }) {
-    const [reviews, setReviews] = useState([]);
+    const [reviews, setReviews] = useState([])
 
     useEffect(() => {
         bookService.getById(bookId)
             .then(book => {
-                setReviews(book.reviews || []);
-            });
-    }, [bookId]);
+                setReviews(book.reviews || [])
+            })
+    }, [bookId])
 
     useEffect(() => {
         if (newReview) {
-            setReviews((prevReviews) => [...prevReviews, newReview]);
+            setReviews((prevReviews) => [...prevReviews, newReview])
         }
-    }, [newReview]);
+    }, [newReview])
 
     function onRemoveReview(index) {
-        const updatedReviews = reviews.filter((_, i) => i !== index);
+        const updatedReviews = reviews.filter((_, i) => i !== index)
         bookService.getById(bookId)
             .then(book => {
-                book.reviews = updatedReviews;
-                return bookService.save(book);
+                book.reviews = updatedReviews
+                return bookService.save(book)
             })
             .then(() => {
-                setReviews(updatedReviews);
+                setReviews(updatedReviews)
             })
-    };
+    }
 
     if (!reviews || reviews.length === 0) return
 
