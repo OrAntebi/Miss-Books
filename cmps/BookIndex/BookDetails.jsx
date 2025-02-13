@@ -118,7 +118,7 @@ export function BookDetails() {
                     <h3>Price: <span className={priceClass}>{formattedPrice}</span></h3>
                 </section>
 
-                <section className="book-actions-container flex justify-between">
+                <section className="book-actions-container">
                     <Link to={`/books/${prevBookId}`} className="btn prev-btn">Previous Book</Link>
                     <Link to='/books' className="btn back-btn">Go Back</Link>
                     <button className="btn add-review-btn" onClick={handleAddReviewClick}>Add Review</button>

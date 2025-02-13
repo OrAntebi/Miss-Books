@@ -1,9 +1,23 @@
+@media (max-width: 880px) {
+
+    html {
+        font-size: 12px;
+    }
+
+    .book-details-container .book-actions-container {
+        grid-template-areas:
+            "back-btn review-btn"
+            "prev-btn next-btn";
+    }
+}
+
+
 @media (max-width: 1080px) {
 
     html {
         font-size: 14px;
     }
-    
+
     .book-details-container {
         grid-template-areas: "img" "details" "reviews";
     }

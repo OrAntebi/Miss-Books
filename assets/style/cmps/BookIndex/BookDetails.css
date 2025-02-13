@@ -106,7 +106,8 @@
     .book-actions-container {
         display: grid;
         grid-template-areas: "prev-btn back-btn review-btn next-btn";
-        gap: .6em;
+        place-self: center;
+        gap: 1em;
 
         .prev-btn {
             grid-area: prev-btn;
