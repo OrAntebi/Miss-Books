@@ -1,18 +1,68 @@
 .book-details-container {
-    column-gap: 30px;
+    display: grid;
+    grid-template-areas:
+        "img details"
+        "reviews reviews";
+    column-gap: 1.2rem;
+    row-gap: 15px;
+
+    .book-thumbnil-container {
+        grid-area: img;
+        margin: 0 auto;
+    }
+
+    .book-container {
+        grid-area: details;
+    }
+
+    .reviews {
+        grid-area: reviews;
+        margin-inline: auto;
+        width: 100%;
+
+        fieldset {
+            border: 2px solid var(--primary-clr);
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+            legend {
+                padding: 0 10px;
+                margin-inline-start: 20px;
+
+                font-weight: 600;
+                font-size: 1.3rem;
+            }
+        }
+
+        h2 {
+            text-align: center;
+            border-block-start: 2px dashed var(--primary-clr);
+        }
+
+        th {
+            font-size: 1.2em;
+        }
+
+        .review-table {
+            border-spacing: .3em;
+            width: 100%;
+        }
+
+        .rating-img {
+            max-width: 1em;
+        }
+    }
+
 
     .book-info {
         margin-block-end: 15px;
 
         gap: 10px;
         text-align: start;
+        text-wrap: balance;
 
         h1 {
             font-size: 2.5rem;
-        }
-
-        p {
-            text-wrap: balance;
         }
 
         .show-more {
@@ -54,8 +104,16 @@
     }
 
     .book-actions-container {
+        display: grid;
+        grid-template-areas: "prev-btn back-btn review-btn next-btn";
+        gap: .6em;
+
+        .prev-btn {
+            grid-area: prev-btn;
+        }
 
         .add-review-btn {
+            grid-area: review-btn;
             background: linear-gradient(30deg, #D67E2A, #FFAE42);
 
             &:hover {
@@ -64,20 +122,19 @@
         }
 
         .back-btn {
+            grid-area: back-btn;
             background: linear-gradient(30deg, #008080, #00B48C);
 
             &:hover {
                 animation: pulseBack 1.5s infinite;
             }
         }
-    }
 
-    .reviews-container {
-
-        .rating-img {
-            max-width: 30px;
+        .next-btn {
+            grid-area: next-btn;
         }
     }
+
 }
 
 @keyframes pulseAddReview {

@@ -2,7 +2,8 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomInt,
-    convertRatingToStars
+    convertRatingToStars,
+    convertDateFormat
 }
 
 function makeId(length = 25) {

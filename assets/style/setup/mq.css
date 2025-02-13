@@ -1,0 +1,10 @@
+@media (max-width: 1080px) {
+
+    html {
+        font-size: 14px;
+    }
+    
+    .book-details-container {
+        grid-template-areas: "img" "details" "reviews";
+    }
+}

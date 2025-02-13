@@ -1,5 +1,5 @@
 .main-content:not(:has(.loader)) {
-    margin: 40px auto;
+    margin: 10px auto 30px;
     padding: clamp(20px, 5vw, 40px);
 
     background-color: #ffffff;

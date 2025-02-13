@@ -59,6 +59,7 @@ function addReview(bookId, review) {
             book.reviews.push(review)
             return storageService.put(BOOK_KEY, book)
         })
+        .then(_setPrevNextBookId)
 }
 
 function _updateBook(book) {

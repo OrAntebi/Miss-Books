@@ -1,16 +1,18 @@
 const { useParams, Link } = ReactRouterDOM
 const { useEffect, useState } = React
 import { bookService } from '../../services/books.service.js'
+import { addReviewPopup } from '../../services/swal.service.js'
 import { Loader } from '../Util-Cmps/Loader.jsx'
 import { LongText } from '../Util-Cmps/LongText.jsx'
 import { AddReview } from './AddReview.jsx'
 
 export function BookDetails() {
     const [book, setBook] = useState(null)
-    const [isReviewing, setIsReviewing] = useState(false)
     const { bookId } = useParams()
+    const [newReview, setNewReview] = useState(null)
 
     useEffect(() => {
+        setNewReview(null)
         getBookData()
     }, [bookId])
 
@@ -75,20 +77,30 @@ export function BookDetails() {
 
         return { formattedPrice, priceClass }
     }
-
     function handleAddReviewClick() {
-        setIsReviewing(true)
+        addReviewPopup()
+            .then(reviewData => {
+                bookService.addReview(bookId, reviewData)
+                    .then(updatedBook => {
+                        console.log(updatedBook)
+                        setBook(updatedBook);
+                        setNewReview(reviewData);
+                    })
+            })
+            .catch(err => {
+                console.error('Error in addReviewPopup:', err);
+            });
     }
 
     return (
-        <section className="book-details-container flex">
+        <section className="book-details-container">
 
             <div className={'book-thumbnil-container ' + (listPrice.isOnSale ? 'on-sale' : '')}>
                 <img src={thumbnail} alt="book thumbnail" />
             </div>
 
 
-            <div className="flex flex-column justify-between">
+            <div className="book-container flex flex-column justify-between">
                 <section className="book-info flex flex-column justify-between">
                     <h2>{title}</h2>
                     <h3>{subtitle}</h3>
@@ -111,11 +123,8 @@ export function BookDetails() {
                     <button className="btn add-review-btn" onClick={handleAddReviewClick}>Add Review</button>
                     <Link to={`/books/${nextBookId}`} className="btn next-btn">Next Book</Link>
                 </section>
-
-                <section className="reviews-container">
-                    {isReviewing && <AddReview bookId={bookId} />}
-                </section>
             </div>
+            <AddReview bookId={bookId} newReview={newReview} />
         </section>
     )
 }

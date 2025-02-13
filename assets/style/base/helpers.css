@@ -48,7 +48,7 @@
 
 .active {
     font-family: Caudex-Bold, serif;
-    background-color: var(--secondary-clr);
+    scale: 1.1;
 }
 
 /* hidden element */
