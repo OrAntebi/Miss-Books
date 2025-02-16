@@ -105,6 +105,10 @@
                 border-block-end: var(--nav-border);
                 transition: box-shadow 0.2s linear;
 
+                &:last-child {
+                    border-inline-end: none;
+                }
+
                 .item {
                     display: flex;
                     justify-content: center;

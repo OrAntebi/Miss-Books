@@ -3,7 +3,11 @@
     height: 100%;
 
     li {
-        border-inline: 1px solid rgba(0, 0, 0, 0.3);
+        border-inline-start: 1px solid rgba(0, 0, 0, 0.3);
+
+        &:last-child {
+            border-inline-end: 1px solid rgba(0, 0, 0, 0.3);
+        }
 
         .item {
             width: 6em;
