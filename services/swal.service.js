@@ -1,9 +1,14 @@
 export async function addReviewPopup() {
   const { value: formValues } = await Swal.fire({
-    title: "Enter a new review 😃",
+    title: "Add a new review",
     html: `
+        <label for="swal-input1">Name:</label>
         <input id="swal-input1" class="swal2-input" placeholder="Name" type="text" required>
+
+        <label for="swal-input2">Rating (1-5):</label>
         <input id="swal-input2" class="swal2-input" placeholder="Rating (1-5)" type="number" min="1" max="5" required>
+
+        <label for="swal-input3">Read at:</label>
         <input id="swal-input3" class="swal2-input" type="date" required>
       `,
     focusConfirm: false,
@@ -43,7 +48,7 @@ export async function addReviewPopup() {
         return false
       }
 
-      return { name, rating: +rating, readAt}
+      return { name, rating: +rating, readAt }
     }
   })
 

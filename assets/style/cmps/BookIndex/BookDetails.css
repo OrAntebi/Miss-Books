@@ -6,7 +6,7 @@
     column-gap: 1.2rem;
     row-gap: 15px;
 
-    .book-thumbnil-container {
+    .book-thumbnail-container {
         grid-area: img;
         margin: 0 auto;
     }
@@ -26,8 +26,8 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 
             legend {
-                padding: 0 10px;
-                margin-inline-start: 20px;
+                padding: 0 5px;
+                margin-inline-start: 10px;
 
                 font-weight: 600;
                 font-size: 1.3rem;
@@ -81,7 +81,7 @@
     }
 
 
-    .book-thumbnil-container.on-sale {
+    .book-thumbnail-container.on-sale {
         position: relative;
         width: fit-content;
 
@@ -96,7 +96,7 @@
 
             color: rgb(255, 255, 255);
             background-color: rgba(255, 0, 0, 0.7);
-            font-size: clamp(.7em, 1vw, 1em);
+            font-size: clamp(.8em, 1vw, 1em);
             font-family: Caudex-Bold, serif;
             animation: pulseOnSale 1.5s infinite;
             clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%)
@@ -106,8 +106,7 @@
     .book-actions-container {
         display: grid;
         grid-template-areas: "prev-btn back-btn review-btn next-btn";
-        place-self: center;
-        gap: 1em;
+        justify-content: space-between;
 
         .prev-btn {
             grid-area: prev-btn;

@@ -1,21 +1,37 @@
+const { useState } = React
 const { NavLink } = ReactRouterDOM
 
 export function Navigation() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    function onToggleMenu() {
+        if (window.innerWidth <= 800) {
+            setIsMenuOpen(!isMenuOpen);
+        }
+    }
+
     return (
-        <nav className="navigation">
-            <ul className="flex clean-list">
-                <li className="flex">
-                    <NavLink to='/' className="flex align-center justify-center">Home</NavLink>
-                </li>
+        <React.Fragment>
+            <span
+                className="main-menu fa-solid hidden"
+                onClick={onToggleMenu}>
+            </span>
 
-                <li className="flex">
-                    <NavLink to='/about' className="flex align-center justify-center">About</NavLink>
-                </li>
+            {isMenuOpen && <div className="overlay" onClick={onToggleMenu}></div>}
 
-                <li className="flex">
-                    <NavLink to='/books' className="flex align-center justify-center">Books</NavLink>
-                </li>
-            </ul>
-        </nav>
-    )
+            <nav className={`main-nav ${isMenuOpen ? 'openedMenu' : ''}`}>
+                <ul className="main-menu-list flex clean-list">
+                    <li className="flex" onClick={onToggleMenu}>
+                        <NavLink to='/' className="item flex align-center justify-center">Home</NavLink>
+                    </li>
+                    <li className="flex" onClick={onToggleMenu}>
+                        <NavLink to='/about' className="item flex align-center justify-center">About</NavLink>
+                    </li>
+                    <li className="flex" onClick={onToggleMenu}>
+                        <NavLink to='/books' className="item flex align-center justify-center">Books</NavLink>
+                    </li>
+                </ul>
+            </nav>
+        </React.Fragment>
+    );
 }

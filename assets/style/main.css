@@ -27,6 +27,9 @@
 @import url(cmps/BookIndex/BookDetails.css);
 @import url(cmps/BookIndex/BookEdit.css);
 
+@import url(cmps/Util-Cmps/swal-popup.css);
+@import url(cmps/Util-Cmps/overlay.css);
+
 
 /* SETUP */
 @import url(setup/vars.css);

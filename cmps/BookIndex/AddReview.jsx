@@ -1,24 +1,32 @@
 const { useState, useEffect } = React
 import { bookService } from "../../services/books.service.js"
-import { utilService } from "../../services/util-service.js"
+import { ReviewsPreviews } from "./ReviewsPreview.jsx"
 
 export function AddReview({ bookId, newReview }) {
     const [reviews, setReviews] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         bookService.getById(bookId)
             .then(book => {
+                setIsLoading(true)
                 setReviews(book.reviews || [])
             })
+            .finally(() => setIsLoading(false))
     }, [bookId])
 
+
     useEffect(() => {
+        setIsLoading(true)
         if (newReview) {
             setReviews((prevReviews) => [...prevReviews, newReview])
+            setTimeout(() => setIsLoading(false), 500)
         }
     }, [newReview])
 
+
     function onRemoveReview(index) {
+        setIsLoading(true)
         const updatedReviews = reviews.filter((_, i) => i !== index)
         bookService.getById(bookId)
             .then(book => {
@@ -28,34 +36,16 @@ export function AddReview({ bookId, newReview }) {
             .then(() => {
                 setReviews(updatedReviews)
             })
+            .finally(() => setIsLoading(false))
     }
 
-    if (!reviews || reviews.length === 0) return
-
+    if (isLoading) return (<h3>Loading reviews...</h3>)
+    if (!reviews || reviews.length === 0) return (<h3>There are no book reviews</h3>)
     return (
         <section className="reviews">
             <fieldset>
                 <legend>Reviews</legend>
-                <table className="review-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Rating</th>
-                            <th>Read at</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {reviews.map((review, reviewIdx) => (
-                            <tr key={reviewIdx}>
-                                <td>{review.name}</td>
-                                <td>{utilService.convertRatingToStars(review.rating)}</td>
-                                <td>{new Date(review.readAt).toLocaleDateString('en-IL')}</td>
-                                <td className="btn1" onClick={() => onRemoveReview(reviewIdx)}>Remove</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <ReviewsPreviews reviews={reviews} onRemoveReview={onRemoveReview} />
             </fieldset>
         </section>
     )

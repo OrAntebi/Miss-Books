@@ -1,22 +1,28 @@
-.navigation {
-    flex-grow: 1;
-    max-width: 600px;
+.main-nav .main-menu-list {
+    position: relative;
+    height: 100%;
 
-    ul {
-        justify-content: end;
-        li {
-            display: flex;
-            width: 100%;
-            justify-content: end;
-            
-            a {
-                width: 100%;
-                max-width: 100px;
-                aspect-ratio: 1;
+    li {
+        border-inline: 1px solid rgba(0, 0, 0, 0.3);
 
-                font-size: 1.5em;
+        .item {
+            width: 6em;
+            aspect-ratio: 1.1;
+
+            font-size: 1.4rem;
+            color: white;
+            transition: box-shadow 0.2s linear;
+
+            &:hover {
+                color: var(--nav-clr);
+                box-shadow: inset 0px -6px 0px var(--nav-clr);
+            }
+
+            &.active {
+                color: var(--nav-clr);
+                box-shadow: inset 0px -6px 0px var(--nav-clr);
+                cursor: default;
             }
         }
-
     }
 }

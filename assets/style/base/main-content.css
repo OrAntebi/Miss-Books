@@ -1,4 +1,6 @@
 .main-content:not(:has(.loader)) {
+    width: fit-content;
+    
     margin: 10px auto 30px;
     padding: clamp(20px, 5vw, 40px);
 

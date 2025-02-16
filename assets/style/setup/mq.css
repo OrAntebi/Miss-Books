@@ -1,4 +1,15 @@
-@media (max-width: 880px) {
+@media (max-width: 1080px) {
+
+    html {
+        font-size: 16px;
+    }
+
+    .book-details-container {
+        grid-template-areas: "img" "details" "reviews";
+    }
+}
+
+@media (max-width: 800px) {
 
     html {
         font-size: 12px;
@@ -8,17 +19,112 @@
         grid-template-areas:
             "back-btn review-btn"
             "prev-btn next-btn";
-    }
-}
 
-
-@media (max-width: 1080px) {
-
-    html {
-        font-size: 14px;
+        justify-content: center;
+        gap: 10px;
     }
 
-    .book-details-container {
-        grid-template-areas: "img" "details" "reviews";
+    .app-header {
+        padding-inline: 20px;
+    }
+
+    .main-menu {
+        display: block;
+    }
+
+    .navigation {
+        display: none;
+    }
+
+    .main-layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-content:not(:has(.loader)) {
+        max-width: calc(100% - 40px);
+    }
+
+    /* navigation */
+
+    .overlay {
+        opacity: 1;
+        pointer-events: all;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .main-menu {
+        padding: 0.6em;
+        margin: 30px 0 30px 30px;
+
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: white;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+
+    .main-nav {
+        position: fixed;
+        inset: 109px 0 auto 0;
+
+        display: grid;
+        grid-template-rows: 0fr;
+        overflow: hidden;
+        align-items: end;
+
+        transition: grid-template-rows .6s;
+        background-color: #cccccce5;
+
+        .main-menu-list {
+            flex-direction: column;
+
+            min-height: 0;
+
+            border-inline-start: var(--nav-border);
+
+            li {
+                display: block;
+                width: 100%;
+                min-width: 135px;
+                border: none;
+                border-block-end: var(--nav-border);
+                transition: box-shadow 0.2s linear;
+
+                .item {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    height: 100px;
+                    width: 100%;
+
+                    border-block-end: 1px solid rgba(0, 0, 0, 0.438);
+                }
+            }
+        }
+    }
+
+    .main-nav.openedMenu {
+        grid-template-rows: 1fr;
+        z-index: 2;
+    }
+
+    body:has(.main-nav.openedMenu) {
+        overflow-y: hidden
     }
 }

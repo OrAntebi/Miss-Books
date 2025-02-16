@@ -1,0 +1,10 @@
+.swal2-popup {
+
+    .swal2-html-container {
+        text-align: start;
+
+        .swal2-input {
+            margin-block-start: .5em;
+        }
+    }
+}

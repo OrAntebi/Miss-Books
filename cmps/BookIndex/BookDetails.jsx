@@ -96,7 +96,7 @@ export function BookDetails() {
     return (
         <section className="book-details-container">
 
-            <div className={'book-thumbnil-container ' + (listPrice.isOnSale ? 'on-sale' : '')}>
+            <div className={'book-thumbnail-container ' + (listPrice.isOnSale ? 'on-sale' : '')}>
                 <img src={thumbnail} alt="book thumbnail" />
             </div>
 

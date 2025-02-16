@@ -7,3 +7,20 @@
     font-family: Caudex-Regular;
     src: url('../fonts/Caudex/Caudex-Regular.ttf');
 }
+
+/* Font Awesome */
+
+@font-face {
+    font-family: Fa-solid;
+    src: url('../fonts/Font-Awesome/fa-solid-900.ttf');
+}
+
+.fa-solid::before {
+    font-family: Fa-solid;
+}
+
+.fa-solid.main-menu::before {
+    content: '\f0c9';
+    font-size: 2rem;
+    cursor: pointer;
+}
