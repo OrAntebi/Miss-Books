@@ -7,7 +7,7 @@ export const bookService = {
     remove,
     save,
     getDefaultFilter,
-    addReview
+    addReview,
 }
 
 const BOOK_KEY = 'booksDB'
@@ -55,27 +55,15 @@ function addReview(bookId, review) {
             if (!book) throw new Error('Book not found!')
 
             if (!book.reviews) book.reviews = []
-    
+
             book.reviews.push(review)
             return storageService.put(BOOK_KEY, book)
         })
         .then(_setPrevNextBookId)
 }
 
-function _updateBook(book) {
-    return storageService.put(BOOK_KEY, book)
-}
-
-function _addBook(book) {
-    return storageService.post(BOOK_KEY, book)
-}
-
-function _saveBooksToStorage() {
-    storageService.save(BOOK_KEY, booksData)
-}
-
 function _setPrevNextBookId(book) {
-    return storageService.query(BOOK_KEY, 0)
+    return storageService.query(BOOK_KEY)
         .then(books => {
             const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
             const prevBook = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
@@ -84,5 +72,20 @@ function _setPrevNextBookId(book) {
             book.nextBookId = nextBook.id
             return book
         })
+}
+
+function _updateBook(book) {
+    return storageService.put(BOOK_KEY, book)
+}
+
+function _addBook(book) {
+    return storageService.post(BOOK_KEY, book)
+        .then(() => {
+            _setPrevNextBookId
+        })
+}
+
+function _saveBooksToStorage() {
+    storageService.save(BOOK_KEY, booksData)
 }
 

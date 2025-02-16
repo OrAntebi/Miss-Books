@@ -1,4 +1,5 @@
 .main-content:not(:has(.loader)) {
+    position: relative;
     width: fit-content;
     
     margin: 10px auto 30px;

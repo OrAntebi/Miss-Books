@@ -80,15 +80,17 @@
 
     .main-nav {
         position: fixed;
-        inset: 109px 0 auto 0;
+        inset: 105px 0 auto 0;
 
         display: grid;
         grid-template-rows: 0fr;
         overflow: hidden;
         align-items: end;
 
-        transition: grid-template-rows .6s;
+        transition: grid-template-rows 0.6s ease-out;
+
         background-color: #cccccce5;
+        z-index: 2;
 
         .main-menu-list {
             flex-direction: column;
@@ -130,5 +132,29 @@
 
     body:has(.main-nav.openedMenu) {
         overflow-y: hidden
+    }
+
+    .fa-solid.book-edit-btn {
+        display: inline-block;
+
+        width: max-content;
+
+        padding: .3em;
+
+        font-size: 1.5rem;
+        border-radius: 100vh;
+        cursor: pointer;
+    }
+
+    .book-edit-btn {
+        display: none;
+    }
+
+    .book-edit-container {
+        .book-edit-btn {
+            position: absolute;
+            top: 14px;
+            right: 10px;
+        }
     }
 }

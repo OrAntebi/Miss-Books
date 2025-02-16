@@ -3,6 +3,9 @@ export const utilService = {
     makeLorem,
     getRandomInt,
     convertRatingToStars,
+    getRandomValue,
+    getRandomYear,
+    generateRandomText
 }
 
 function makeId(length = 25) {
@@ -44,3 +47,20 @@ function convertRatingToStars(rating, maxRating = 5) {
     }
     return stars
 }
+
+function getRandomValue(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function getRandomYear(startYear, endYear) {
+    return Math.floor(Math.random() * (endYear - startYear + 1)) + startYear;
+}
+
+function generateRandomText(length = 100) {
+    const words = ['the', 'cat', 'runs', 'to', 'eat', 'the', 'mouse', 'in', 'the', 'garden', 'they', 'are', 'playing', 'they', 'are', 'going', 'to', 'watch', 'a', 'movie'];
+    let sentence = '';
+    for (let i = 0; i < length; i++) {
+      sentence += words[Math.floor(Math.random() * words.length)] + ' ';
+    }
+    return sentence.trim() + '.';
+  }

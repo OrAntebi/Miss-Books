@@ -4,6 +4,7 @@ import { bookService } from '../services/books.service.js'
 import { Loader } from '../cmps/Util-Cmps/Loader.jsx'
 import { BookFilter } from '../cmps/BookIndex/BookFilter.jsx';
 import { BookList } from '../cmps/BookIndex/BookList.jsx';
+import { BookEdit } from '../cmps/BookIndex/BookEdit.jsx';
 
 
 export function BookIndex() {
@@ -36,6 +37,7 @@ export function BookIndex() {
     return (
         <section className="book-index-page full">
             <BookFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+            <BookEdit />
             <section className="book-list flex justify-center">
                 {books.length ? (
                     <BookList books={books} onDeleteBook={onDeleteBook} />

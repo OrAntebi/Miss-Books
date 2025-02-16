@@ -21,6 +21,8 @@
 
 .fa-solid.main-menu::before {
     content: '\f0c9';
-    font-size: 2rem;
-    cursor: pointer;
+}
+
+.fa-solid.book-edit-btn::before {
+    content: '\2b';
 }

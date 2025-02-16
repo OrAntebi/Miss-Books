@@ -1,0 +1,8 @@
+.book-edit-container {
+
+    .book-edit-btn {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+    }
+}
