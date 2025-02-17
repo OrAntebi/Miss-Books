@@ -92,7 +92,6 @@ export function BookDetails() {
             .catch(err => console.error('Error in addReviewPopup:', err))
     }
 
-
     return (
         <section className="book-details-container">
 

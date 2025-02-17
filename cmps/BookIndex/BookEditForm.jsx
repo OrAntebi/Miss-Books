@@ -1,107 +1,137 @@
-const { useState } = React
-const { Link, useNavigate } = ReactRouterDOM
+const { useState, useEffect } = React
+const { Link, useNavigate, useParams } = ReactRouterDOM
 
-import { utilService } from "../../services/util-service.js"
 import { bookService } from "../../services/books.service.js"
+import { Loader } from "../Util-Cmps/Loader.jsx"
+import { showSuccessMsg, showErrorMsg } from "../../services/event-bus.service.js"
 
 export function BookEditForm() {
+    const [bookToEdit, setBookToEdit] = useState(bookService.getEmptyBook())
+    const [loading, setLoading] = useState(true)
 
-    const [book, setBook] = useState({
-        title: '',
-        subtitle: utilService.generateRandomText(6),
-        authors: utilService.makeLorem(2),
-        publishedDate: utilService.getRandomYear(1980, 2025),
-        description: utilService.generateRandomText(utilService.getRandomInt(50, 250)),
-        pageCount: utilService.getRandomInt(80, 1000),
-        categories: utilService.getRandomValue(['General', 'Hack', 'Computers']),
-        language: utilService.getRandomValue(['en', 'sp']),
-        amount: utilService.getRandomInt(30, 600),
-        currencyCode: utilService.getRandomValue(['USD', 'ILS', 'EUR']),
-        isOnSale: false,
-    })
+    const { bookId } = useParams()
     const navigate = useNavigate()
 
-    const handleChange = ({ target: { name, value, type, checked } }) => {
-        setBook(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
-    }
+    useEffect(() => {
+        if (!bookId) return setLoading(false)
 
-    const handleSubmit = (ev) => {
-        ev.preventDefault()
+        loadBook()
+    }, [bookId])
 
-        const form = ev.target
-        if (!form.checkValidity()) return
-
-        let bookToSave = {
-            title: book.title,
-            subtitle: book.subtitle,
-            authors: [book.authors],
-            publishedDate: book.publishedDate,
-            description: book.description,
-            pageCount: book.pageCount,
-            categories: [book.categories],
-            thumbnail: `./assets/img/${utilService.getRandomInt(1, 20)}.jpg`,
-            language: book.language,
-            listPrice: {
-                amount: Number(book.amount),
-                currencyCode: book.currencyCode,
-                isOnSale: book.isOnSale,
-            }
-        }
-        bookService.save(bookToSave)
-            .then(() => {
-                navigate('/books')
+    function loadBook() {
+        bookService.getById(bookId)
+            .then(book => {
+                setBookToEdit(book)
+                setLoading(false)
+            })
+            .catch(() => {
+                showErrorMsg("Couldn't load the book")
+                setLoading(false)
             })
     }
 
-    const formatLabel = (label) => {
-        return label
-            .replace(/([A-Z])/g, ' $1')
-            .replace(/^./, (str) => str.toUpperCase())
+    function onSave(ev) {
+        ev.preventDefault()
+
+        bookService.save(bookToEdit)
+            .then(() => showSuccessMsg('Book has successfully saved!'))
+            .catch(() => showErrorMsg(`Couldn't save book`))
+            .finally(() => navigate('/books'))
     }
 
+    function handleChange({ target }) {
+        const { type, name: prop } = target
+        let { value } = target
+
+        switch (type) {
+            case 'range':
+            case 'number':
+                value = +value
+                break
+
+            case 'checkbox':
+                value = target.checked
+                break
+
+            default:
+                if (target.selectedOptions) {
+                    value = target.value
+                }
+                break
+        }
+
+        setBookToEdit(prevBook => ({ ...prevBook, [prop]: value }))
+    }
+
+    function handleChangeListPrice({ target }) {
+        const { type, name: prop } = target
+        let { value } = target
+
+        switch (type) {
+            case 'range':
+            case 'number':
+                value = +value
+                break
+
+            case 'checkbox':
+                value = target.checked
+                break
+        }
+
+        setBookToEdit(prevBook => ({
+            ...prevBook,
+            listPrice: { ...prevBook.listPrice, [prop]: value },
+        }))
+    }
+
+    const { title, authors, listPrice, description, pageCount, language, categories } = bookToEdit
+
+    if (loading) return <Loader />
     return (
         <section className="book-edit-container flex flex-column">
-            <h2>Add New Book</h2>
-            <form className="book-edit-form" onSubmit={handleSubmit}>
-                {['title', 'subtitle', 'authors', 'categories'].map(name => (
-                    <label key={name} className="label">
-                        {formatLabel(name)}
-                        <input className="input" name={name} placeholder={name} value={book[name]} onChange={handleChange} required />
-                    </label>
-                ))}
+            <h2>{bookId ? 'Edit Book' : 'Add Book'}</h2>
 
-                <label key="language" className="label">
-                    Language
-                    <select className="input" name="language" value={book.language} onChange={handleChange}>
-                        <option value="en">English</option>
-                        <option value="he">Hebrew</option>
-                        <option value="sp">Spanish</option>
-                    </select>
+            <form className="book-edit-form flex flex-column" onSubmit={onSave}>
+                <label className="label" htmlFor="title">Title: </label>
+                <input onChange={handleChange} value={title} id="title" type="text" name="title" className="input" required />
+
+                <label className="label" htmlFor="authors">Authors: </label>
+                <input onChange={handleChange} value={authors} id="authors" type="text" name="authors" className="input" required />
+
+                <label className="label" htmlFor="description">Description: </label>
+                <textarea onChange={handleChange} value={description} id="description" type="text" name="description" className="input" required />
+
+                <label className="label" htmlFor="categories">Categories: </label>
+                <input onChange={handleChange} value={categories} id="categories" type="text" name="categories" className="input" />
+
+                <label className="label" htmlFor="language">Language: </label>
+                <select onChange={handleChange} value={language} id="language" name="language" className="input" required >
+                    <option value="en">English</option>
+                    <option value="he">Hebrew</option>
+                    <option value="sp">Spanish</option>
+                </select>
+
+                <label className="label" htmlFor="pages">Number of pages: </label>
+                <input onChange={handleChange} value={pageCount} id="pages" type="number" name="pageCount" className="input" required />
+
+                <label className="label" htmlFor="price">Price: </label>
+                <input onChange={handleChangeListPrice} value={listPrice.amount} id="price" type="number" name="amount" className="input" required />
+
+                <label className="label" htmlFor="currencyCode">Currency: </label>
+                <select onChange={handleChangeListPrice} value={listPrice.currencyCode} id="currencyCode" name="currencyCode" className="input">
+                    <option value="USD">USD</option>
+                    <option value="ILS">ILS</option>
+                    <option value="EUR">EUR</option>
+                </select>
+
+                <label className="label flex align-center justify-between" htmlFor="isOnSale">
+                    On Sale:
+                    <input onChange={handleChangeListPrice} checked={listPrice.isOnSale} id="isOnSale" type="checkbox" name="isOnSale" className="input" />
                 </label>
 
-                {['publishedDate', 'pageCount', 'amount'].map(name => (
-                    <label key={name} className="label">
-                        {formatLabel(name)}
-                        <input className="input" name={name} type="number" value={book[name]} onChange={handleChange} required />
-                    </label>
-                ))}
-
-                <label key="currencyCode" className="label">
-                    Currency
-                    <select className="input" name="currencyCode" value={book.currencyCode} onChange={handleChange}>
-                        <option value="USD">USD</option>
-                        <option value="ILS">ILS</option>
-                        <option value="EUR">EUR</option>
-                    </select>
-                </label>
-
-                <label className="label flex align-center justify-between">
-                    On Sale?
-                    <input className="input" type="checkbox" name="isOnSale" checked={book.isOnSale} onChange={handleChange} />
-                </label>
                 <section className="book-actions-container flex align-center">
-                    <Link to='/books' className="btn back-btn">Go Back</Link>
-                    <button className="btn" type="submit">Add Book</button>
+                    <Link to="/books" className="btn back-btn">Go Back</Link>
+                    <button className="btn" type="submit">{bookId ? 'Save Book' : 'Add Book'}</button>
                 </section>
             </form>
         </section>

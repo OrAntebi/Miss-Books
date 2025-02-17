@@ -1,19 +1,12 @@
 const { useState } = React
 const { NavLink } = ReactRouterDOM
 
-export function Navigation() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    function onToggleMenu() {
-        if (window.innerWidth <= 800) {
-            setIsMenuOpen(!isMenuOpen);
-        }
-    }
+export function Navigation({ onToggleMenu, isMenuOpen }) {
 
     return (
         <React.Fragment>
             <span
-                className="main-menu fa-solid hidden"
+                className={`main-menu fa-solid hidden ${isMenuOpen ? 'openedMenu' : ''}`}
                 onClick={onToggleMenu}>
             </span>
 

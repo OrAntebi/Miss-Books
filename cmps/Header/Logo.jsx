@@ -1,6 +1,6 @@
-export function Logo() {
+export function Logo({ onToggleMenu, isMenuOpen }) {
     return (
-        <article className="logo">
+        <article className="logo" onClick={isMenuOpen ? onToggleMenu : undefined}>
             Miss Books
         </article>
     )

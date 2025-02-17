@@ -15,7 +15,7 @@ export function BookEdit() {
                 className="btn book-edit-btn fa-solid hidden"
                 onClick={onToggleBookAdd}>
             </span>
-            <Link to="/books/book-edit" className="btn book-edit-btn">Add Book</Link>
+            <Link to="/books/add" className="btn book-edit-btn">Add Book</Link>
         </section>
     )
 }

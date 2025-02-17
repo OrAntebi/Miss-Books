@@ -22,8 +22,8 @@
 
 /* text helpers */
 
-.colored-text {
-    color: var(--clr1);
+.bold-txt {
+    font-weight: 600;
 }
 
 /* list helpers */
@@ -51,6 +51,7 @@
 }
 
 /* hidden element */
+
 .hidden {
     display: none;
 }

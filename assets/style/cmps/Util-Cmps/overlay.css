@@ -1,8 +1,9 @@
 .overlay {
     position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    inset: 105px 0 0 0;
+
     opacity: 0;
+    background-color: rgba(0, 0, 0, 0.4);
     pointer-events: none;
     transition: opacity 0.3s ease;
 }

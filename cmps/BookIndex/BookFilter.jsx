@@ -18,7 +18,7 @@ export function BookFilter({ onSetFilter, filterBy }) {
 	return (
 		<section className="books-filters-container">
 
-			<h2 className="filter-header">Filter Books</h2>
+			<h2 className="filter-header">Book Filters</h2>
 
 			<div className="books-filters flex justify-center">
 
