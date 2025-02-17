@@ -6,7 +6,7 @@ export function BookEdit() {
     const navigate = useNavigate()
 
     function onToggleBookAdd() {
-        navigate('/books/book-edit')
+        navigate('/books/add')
     }
 
     return (
