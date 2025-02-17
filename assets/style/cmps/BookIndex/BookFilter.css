@@ -1,9 +1,11 @@
 .books-filters-container {
-    border-block-end: 2px dashed var(--primary-clr);
     margin-block-end: 20px;
+    padding-block-end: 5px;
+    
+    border-block-end: 2px dashed var(--primary-clr);
 
     .filter-header {
-        margin-block-end: .3em;
+        margin-block-end: .4em;
         text-align: center;
     }
 
