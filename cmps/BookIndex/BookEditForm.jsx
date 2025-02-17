@@ -63,12 +63,21 @@ export function BookEditForm() {
         <section className="book-edit-container flex flex-column">
             <h2>Add New Book</h2>
             <form className="book-edit-form" onSubmit={handleSubmit}>
-                {['title', 'subtitle', 'authors', 'categories', 'language'].map(name => (
+                {['title', 'subtitle', 'authors', 'categories'].map(name => (
                     <label key={name} className="label">
                         {formatLabel(name)}
                         <input className="input" name={name} placeholder={name} value={book[name]} onChange={handleChange} required />
                     </label>
                 ))}
+
+                <label key="language" className="label">
+                    Language
+                    <select className="input" name="language" value={book.language} onChange={handleChange}>
+                        <option value="en">English</option>
+                        <option value="he">Hebrew</option>
+                        <option value="sp">Spanish</option>
+                    </select>
+                </label>
 
                 {['publishedDate', 'pageCount', 'amount'].map(name => (
                     <label key={name} className="label">
