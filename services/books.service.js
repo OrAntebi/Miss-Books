@@ -26,7 +26,13 @@ function query(filterBy) {
             if (filterBy.price) {
                 books = books.filter(b => b.listPrice.amount <= filterBy.price)
             }
-
+            if (filterBy.pages) {
+                books = books.filter(b => b.pageCount >= filterBy.pages)
+            }
+            if (filterBy.published) {
+                books = books.filter(b => b.publishedDate >= filterBy.published)
+            }
+            console.log(books)
             return books
         })
         .catch(error => console.log(error))
@@ -46,7 +52,7 @@ function save(book) {
 }
 
 function getDefaultFilter() {
-    return { title: '', price: 0 }
+    return { title: '', price: 0, pages: null, published: '' }
 }
 
 function addReview(bookId, review) {

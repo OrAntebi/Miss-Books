@@ -9,5 +9,6 @@
 
     .books-filters {
         column-gap: 25px;
+        flex-wrap: wrap;
     }
 }
