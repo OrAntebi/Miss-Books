@@ -1,7 +1,7 @@
 .btn {
-    display: flex;           /* Use flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     border: none;
     color: #fff;
@@ -17,24 +17,6 @@
 
     &:hover {
         animation: pulse 1.5s infinite;
-    }
-}
-
-.btn1 {
-    border: none;
-    width: 1em;
-    color: #fff;
-    background-color: #00308F;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    font-family: inherit;
-    padding: .4em 1em;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-
-    &:hover {
-        background-color: #0056a3;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
 }
 

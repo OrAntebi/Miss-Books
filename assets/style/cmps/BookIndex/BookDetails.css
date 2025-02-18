@@ -51,6 +51,17 @@
         .rating-img {
             max-width: 1em;
         }
+
+        .remove-btn {
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 200ms ease;
+            
+            &:hover {
+                display: block;
+                transform: scale(1.2);
+            }
+        }
     }
 
 
