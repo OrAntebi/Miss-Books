@@ -7,9 +7,9 @@ export const bookService = {
     getById,
     remove,
     save,
-    getDefaultFilter,
     addReview,
-    getEmptyBook
+    getEmptyBook,
+    getFilterFromSearchParams,
 }
 
 const BOOK_KEY = 'booksDB'
@@ -28,16 +28,16 @@ function query(filterBy) {
             if (filterBy.price) {
                 books = books.filter(b => b.listPrice.amount <= filterBy.price)
             }
-            if (filterBy.pages) {
-                books = books.filter(b => b.pageCount >= filterBy.pages)
+            if (filterBy.pageCount) {
+                books = books.filter(b => b.pageCount <= filterBy.pageCount)
             }
             if (filterBy.published) {
                 books = books.filter(b => b.publishedDate >= filterBy.published)
             }
-            console.log(books)
+
             return books
         })
-        .catch(error => console.log(error))
+        .catch(error => console.error(error))
 }
 
 function getById(bookId) {
@@ -53,8 +53,14 @@ function save(book) {
     return book.id ? _updateBook(book) : _addBook(book)
 }
 
-function getDefaultFilter() {
-    return { title: '', price: 0, pages: null, published: '' }
+function getFilterFromSearchParams(searchParams) {
+
+    const title = searchParams.get('title') || ''
+    const price = searchParams.get('price') || ''
+    const pageCount = searchParams.get('pageCount') || ''
+    const published = searchParams.get('published') || ''
+
+    return { title, price, pageCount, published }
 }
 
 function getEmptyBook(title = '', amount = '', description = '', pageCount = '', language = 'en', authors = '', categories = '', publishedDate = '', isOnSale = false) {

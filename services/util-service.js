@@ -5,7 +5,8 @@ export const utilService = {
     convertRatingToStars,
     getRandomValue,
     getRandomYear,
-    generateRandomText
+    generateRandomText,
+    debounce
 }
 
 function makeId(length = 25) {
@@ -60,7 +61,18 @@ function generateRandomText(length = 100) {
     const words = ['the', 'cat', 'runs', 'to', 'eat', 'the', 'mouse', 'in', 'the', 'garden', 'they', 'are', 'playing', 'they', 'are', 'going', 'to', 'watch', 'a', 'movie'];
     let sentence = '';
     for (let i = 0; i < length; i++) {
-      sentence += words[Math.floor(Math.random() * words.length)] + ' ';
+        sentence += words[Math.floor(Math.random() * words.length)] + ' ';
     }
     return sentence.trim() + '.';
-  }
+}
+
+
+function debounce(func, delay) {
+    let timeoutId
+    return (...args) => {
+        clearTimeout(timeoutId)
+        timeoutId = setTimeout(() => {
+            func(...args)
+        }, delay)
+    }
+}
