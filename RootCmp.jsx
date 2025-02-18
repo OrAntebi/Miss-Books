@@ -7,6 +7,7 @@ import { About } from "./pages/About.jsx"
 import { BookIndex } from "./pages/BookIndex.jsx"
 import { BookDetails } from "./pages/BookDetails.jsx"
 import { BookEditForm } from "./cmps/BookEdit/BookEditForm.jsx"
+import { UserMsg } from "./cmps/Util-Cmps/UserMsg.jsx"
 
 
 export function App() {
@@ -29,7 +30,7 @@ export function App() {
                         <Route path='/books/edit/:bookId' element={<BookEditForm />} />
                     </Routes>
                 </main>
-
+                <UserMsg />
             </section>
         </Router>
     )

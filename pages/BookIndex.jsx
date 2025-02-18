@@ -6,6 +6,7 @@ import { Loader } from '../cmps/Util-Cmps/Loader.jsx'
 import { BookFilter } from '../cmps/BookIndex/BookFilter.jsx';
 import { BookList } from '../cmps/BookIndex/BookList.jsx';
 import { BookEdit } from './BookEdit.jsx';
+import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
 
 
 export function BookIndex() {
@@ -26,11 +27,12 @@ export function BookIndex() {
             })
     }
 
-
     function onDeleteBook(bookId) {
         bookService.remove(bookId)
             .then(() => setBooks(prevBooks =>
                 prevBooks.filter(book => book.id !== bookId)))
+            .then(() => showSuccessMsg('Book has successfully deleted!'))
+            .catch(() => showErrorMsg(`Couldn't delete book`))
     }
 
     function onSetFilter(filterBy) {
