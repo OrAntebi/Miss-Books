@@ -1,10 +1,10 @@
 const { useParams, Link } = ReactRouterDOM
 const { useEffect, useState } = React
-import { bookService } from '../../services/books.service.js'
-import { addReviewPopup } from '../../services/swal.service.js'
-import { Loader } from '../Util-Cmps/Loader.jsx'
-import { LongText } from '../Util-Cmps/LongText.jsx'
-import { AddReview } from './AddReview.jsx'
+import { bookService } from '../services/books.service.js'
+import { addReviewPopup } from '../services/swal.service.js'
+import { Loader } from '../cmps/Util-Cmps/Loader.jsx'
+import { LongText } from '../cmps/Util-Cmps/LongText.jsx'
+import { AddReview } from '../cmps/BookDetails/AddReview.jsx'
 
 export function BookDetails() {
     const [book, setBook] = useState(null)

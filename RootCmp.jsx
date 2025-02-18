@@ -5,8 +5,8 @@ import { AppHeader } from "./cmps/Header/AppHeader.jsx"
 import { Home } from "./pages/Home.jsx"
 import { About } from "./pages/About.jsx"
 import { BookIndex } from "./pages/BookIndex.jsx"
-import { BookDetails } from "./cmps/BookIndex/BookDetails.jsx"
-import { BookEditForm } from "./cmps/BookIndex/BookEditForm.jsx"
+import { BookDetails } from "./pages/BookDetails.jsx"
+import { BookEditForm } from "./cmps/BookEdit/BookEditForm.jsx"
 
 
 export function App() {
