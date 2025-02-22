@@ -62,7 +62,7 @@
         cursor: pointer;
         color: white;
         background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
+        border-radius: 100vh;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
 
@@ -165,5 +165,9 @@
             top: 14px;
             right: 10px;
         }
+    }
+
+    .google-search-list .fa-solid.add-book-btn {
+        padding: 3px;
     }
 }
