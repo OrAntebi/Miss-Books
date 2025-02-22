@@ -27,6 +27,10 @@
     content: '\2b';
 }
 
+.fa-solid.add-book-btn::before {
+    content: '\2b';
+}
+
 .fa-solid.remove-btn::before {
     content: '\f2ed';
 }

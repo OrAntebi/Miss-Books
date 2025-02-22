@@ -140,10 +140,13 @@
         overflow-y: hidden
     }
 
-    .fa-solid.book-edit-btn {
+    .book-add-container .fa-solid.book-edit-btn {
+        top: 0;
+        right: 0;
+
         display: inline-block;
 
-        width: max-content;
+        width: -webkit-fill-available;
 
         padding: .3em;
 

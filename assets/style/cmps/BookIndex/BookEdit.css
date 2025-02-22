@@ -1,8 +1,39 @@
-.book-edit-container {
+.book-add-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 
-    .book-edit-btn {
-        position: absolute;
-        top: 25px;
-        right: 25px;
+    .fa-solid.book-edit-btn {
+        display: none;
     }
+
+    .add-book-menu {
+        position: absolute;
+        top: 45px;
+        right: 0;
+
+        display: grid;
+
+        width: 180px;
+
+        background-color: white;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+
+        a {
+            width: 100%;
+
+            padding: 10px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            text-align: center;
+        
+            &:hover {
+                background-color: #f1f1f1;
+            }
+        }
+    }
+    
 }

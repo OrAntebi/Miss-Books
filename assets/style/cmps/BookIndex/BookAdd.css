@@ -1,0 +1,11 @@
+.book-search {
+    gap: 20px;
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    input {
+        margin: 0;
+    }
+}

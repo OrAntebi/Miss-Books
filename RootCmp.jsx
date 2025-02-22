@@ -6,8 +6,9 @@ import { Home } from "./pages/Home.jsx"
 import { About } from "./pages/About.jsx"
 import { BookIndex } from "./pages/BookIndex.jsx"
 import { BookDetails } from "./pages/BookDetails.jsx"
-import { BookEditForm } from "./cmps/BookEdit/BookEditForm.jsx"
+import { BookEdit } from "./pages/BookEdit.jsx"
 import { UserMsg } from "./cmps/Util-Cmps/UserMsg.jsx"
+import { BookAdd } from "./pages/BookAdd.jsx"
 
 
 export function App() {
@@ -26,8 +27,9 @@ export function App() {
                         <Route path='/about' element={<About />} />
                         <Route path='/books' element={<BookIndex />} />
                         <Route path='/books/:bookId' element={<BookDetails />} />
-                        <Route path='/books/add' element={<BookEditForm />} />
-                        <Route path='/books/edit/:bookId' element={<BookEditForm />} />
+                        <Route path='/books/add' element={<BookEdit />} />
+                        <Route path='/books/add-from-google' element={<BookAdd />} />
+                        <Route path='/books/edit/:bookId' element={<BookEdit />} />
                     </Routes>
                 </main>
                 <UserMsg />

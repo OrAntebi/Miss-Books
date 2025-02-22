@@ -6,6 +6,7 @@
     .book-container {
         flex-grow: 1;
         gap: var(--gap);
+        width: min-content;
 
         .book-actions {
             gap: var(--gap);

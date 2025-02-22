@@ -50,6 +50,8 @@
 
         .rating-img {
             max-width: 1em;
+            width: auto;
+            height: auto;
         }
 
         .remove-btn {
@@ -74,24 +76,10 @@
 
         h1 {
             font-size: 2.5rem;
-        }
-
-        .show-more {
-            color: #007BFF;
-            cursor: pointer;
-            text-decoration: underline;
-            margin-left: 10px;
-        }
-
-        .show-more:hover {
-            color: #0056b3;
-            text-decoration: none;
-        }
-
-
+        }  
+        
     }
-
-
+    
     .book-thumbnail-container.on-sale {
         position: relative;
         width: fit-content;
@@ -118,6 +106,7 @@
         display: grid;
         grid-template-areas: "prev-btn back-btn review-btn next-btn";
         justify-content: space-between;
+        column-gap: 20px;
 
         .prev-btn {
             grid-area: prev-btn;

@@ -1,6 +1,10 @@
-import { storageService } from './async-storage.service.js'
+import { asyncService } from './async-storage.service.js'
 import { utilService } from './util-service.js'
+import { storageService } from './storage-service.js'
 import { booksData } from './data/books.js'
+
+const CACHE_STORAGE_KEY = 'googleBooksCache'
+const gCache = storageService.loadFromStorage(CACHE_STORAGE_KEY) || {}
 
 export const bookService = {
     query,
@@ -10,12 +14,14 @@ export const bookService = {
     addReview,
     getEmptyBook,
     getFilterFromSearchParams,
+    getGoogleBooks,
+    addGoogleBook,
 }
 
 const BOOK_KEY = 'booksDB'
 
 function query(filterBy) {
-    return storageService.query(BOOK_KEY)
+    return asyncService.query(BOOK_KEY)
         .then(books => {
             if (!books || !books.length) {
                 books = booksData
@@ -41,12 +47,12 @@ function query(filterBy) {
 }
 
 function getById(bookId) {
-    return storageService.get(BOOK_KEY, bookId)
+    return asyncService.get(BOOK_KEY, bookId)
         .then(_setPrevNextBookId)
 }
 
 function remove(bookId) {
-    return storageService.remove(BOOK_KEY, bookId)
+    return asyncService.remove(BOOK_KEY, bookId)
 }
 
 function save(book) {
@@ -54,7 +60,6 @@ function save(book) {
 }
 
 function getFilterFromSearchParams(searchParams) {
-
     const title = searchParams.get('title') || ''
     const price = searchParams.get('price') || ''
     const pageCount = searchParams.get('pageCount') || ''
@@ -82,23 +87,69 @@ function getEmptyBook(title = '', amount = '', description = '', pageCount = '',
     }
 }
 
-
-
 function addReview(bookId, review) {
-    return storageService.get(BOOK_KEY, bookId)
+    return asyncService.get(BOOK_KEY, bookId)
         .then(book => {
             if (!book) throw new Error('Book not found!')
 
             if (!book.reviews) book.reviews = []
 
             book.reviews.push(review)
-            return storageService.put(BOOK_KEY, book)
+            return asyncService.put(BOOK_KEY, book)
         })
         .then(_setPrevNextBookId)
 }
 
+function addGoogleBook(book) {
+    return asyncService.post(BOOK_KEY, book, false)
+}
+
+
+function getGoogleBooks(bookName) {
+    if (bookName === '') return Promise.resolve()
+    const googleBooks = gCache[bookName]
+    if (googleBooks) {
+        console.log('data from storage...', googleBooks)
+        return Promise.resolve(googleBooks)
+    }
+
+    const url = `https://www.googleapis.com/books/v1/volumes?printType=books&q=${bookName}`
+    return axios.get(url)
+        .then(res => {
+            const data = res.data.items
+            console.log('data from network...', data)
+            const books = _formatGoogleBooks(data)
+            gCache[bookName] = books
+            storageService.saveToStorage(CACHE_STORAGE_KEY, gCache)
+            return books
+        })
+}
+
+function _formatGoogleBooks(googleBooks) {
+    return googleBooks.map(googleBook => {
+        const { volumeInfo } = googleBook
+        const book = {
+            id: googleBook.id,
+            title: volumeInfo.title,
+            description: volumeInfo.description || utilService.generateRandomText(),
+            pageCount: volumeInfo.pageCount,
+            authors: volumeInfo.authors,
+            categories: volumeInfo.categories || [utilService.getRandomValue(['General', 'Hack', 'Computers'])],
+            publishedDate: volumeInfo.publishedDate,
+            language: volumeInfo.language,
+            listPrice: {
+                amount: utilService.getRandomInt(80, 700),
+                currencyCode: utilService.getRandomValue(['USD', 'ILS', 'EUR']),
+                isOnSale: Math.random() > 0.7
+            }
+        }
+        if (volumeInfo.imageLinks) book.thumbnail = volumeInfo.imageLinks.thumbnail
+        return book
+    })
+}
+
 function _setPrevNextBookId(book) {
-    return storageService.query(BOOK_KEY)
+    return asyncService.query(BOOK_KEY)
         .then(books => {
             const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
             const prevBook = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
@@ -110,11 +161,11 @@ function _setPrevNextBookId(book) {
 }
 
 function _updateBook(book) {
-    return storageService.put(BOOK_KEY, book)
+    return asyncService.put(BOOK_KEY, book)
 }
 
 function _addBook(book) {
-    return storageService.post(BOOK_KEY, book)
+    return asyncService.post(BOOK_KEY, book)
         .then((savedBook) => {
             return _setPrevNextBookId(savedBook)
         })
@@ -122,6 +173,6 @@ function _addBook(book) {
 
 
 function _saveBooksToStorage() {
-    storageService.save(BOOK_KEY, booksData)
+    asyncService.save(BOOK_KEY, booksData)
 }
 

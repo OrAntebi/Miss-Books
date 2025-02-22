@@ -20,6 +20,10 @@
     align-items: center;
 }
 
+.flex.align-end{
+    align-items: end;
+}
+
 /* text helpers */
 
 .bold-txt {
@@ -54,4 +58,18 @@
 
 .hidden {
     display: none;
+}
+
+/* show more */
+
+.show-more {
+    color: #007BFF;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
+.show-more:hover {
+    color: #0056b3;
+    text-decoration: none;
 }

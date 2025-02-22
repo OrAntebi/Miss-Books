@@ -49,8 +49,9 @@ export function BookDetails() {
 
     function getPublishDate() {
         const currYear = new Date().getFullYear()
-        let publishedYear = book.publishedDate
+        let publishedYear = new Date(book.publishedDate).getFullYear()
         let diff = currYear - publishedYear
+
         if (diff > 10) publishedYear += ' - Vintage'
         else if (diff < 3) publishedYear += ' - NEW!'
         return publishedYear
@@ -77,6 +78,7 @@ export function BookDetails() {
 
         return { formattedPrice, priceClass }
     }
+
 
     function handleAddReviewClick() {
         addReviewPopup()

@@ -1,0 +1,14 @@
+.google-search-list {
+    gap: 10px;
+
+    li {
+        gap: 30px;
+    }
+
+    .fa-solid.add-book-btn {
+        width: fit-content;
+
+        padding: 4px;
+        border-radius: 100vh;
+    }
+}
