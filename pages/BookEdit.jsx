@@ -129,7 +129,7 @@ export function BookEdit() {
                     <input onChange={handleChangeListPrice} checked={listPrice.isOnSale} id="isOnSale" type="checkbox" name="isOnSale" className="input" />
                 </label>
 
-                <section className="book-actions-container flex align-center">
+                <section className="book-actions-container flex align-center justify-center">
                     <Link to="/books" className="btn back-btn">Go Back</Link>
                     <button className="btn" type="submit">{bookId ? 'Save Book' : 'Add Book'}</button>
                 </section>
