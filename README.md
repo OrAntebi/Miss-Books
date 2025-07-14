@@ -69,7 +69,7 @@ Built using **Vanilla React.js**, focusing on both functionality and pixel-perfe
 
 ---
 
-## 📸 Screenshot
+## 📸 Screenshots
 
 Here are some screenshots from the project:
 
